@@ -371,79 +371,12 @@ def _parse_lines(lines: list[str]) -> ParsedCase:
     return ParsedCase(environment=environment, streams=streams_list, blocks=blocks_list)
 
 
-def _build_parse_log(parsed: ParsedCase, source: str, fallback: Optional[str] = None) -> dict:
-    stream_logs = []
-    for stream in parsed.streams:
-        fields = {
-            "T": stream.T,
-            "P": stream.P,
-            "mass_flow": stream.mass_flow,
-            "mol_flow": stream.mol_flow,
-            "enthalpy": stream.enthalpy,
-            "entropy": stream.entropy,
-            "density": stream.density,
-            "phase": stream.phase,
-        }
-        units = {
-            "T": None,
-            "P": None,
-            "mass_flow": None,
-            "mol_flow": None,
-            "enthalpy": None,
-            "entropy": None,
-            "density": None,
-            "phase": None,
-        }
-        stream_logs.append(
-            {
-                "name": stream.name,
-                "parsed": {key: value for key, value in fields.items() if value is not None},
-                "missing": [key for key, value in fields.items() if value is None],
-                "units": {key: value for key, value in units.items() if value is not None},
-                "units_missing": [key for key, value in units.items() if value is None],
-            }
-        )
-
-    block_logs = [
-        {
-            "name": block.name,
-            "type": block.block_type,
-            "mode": block.mode,
-        }
-        for block in parsed.blocks
-    ]
-
-    log = {
-        "source": source,
-        "fallback": fallback,
-        "environment": {
-            "T0": parsed.environment.T0,
-            "P0": parsed.environment.P0,
-            "T0_unit": parsed.environment.T0_unit,
-            "P0_unit": parsed.environment.P0_unit,
-            "reference_composition": dict(parsed.environment.reference_composition),
-            "units_missing": [
-                name
-                for name, value in {
-                    "T0_unit": parsed.environment.T0_unit,
-                    "P0_unit": parsed.environment.P0_unit,
-                }.items()
-                if value is None
-            ],
-        },
-        "streams": stream_logs,
-        "blocks": block_logs,
-    }
-    return log
-
-
-def parse_rep_with_log(path: str) -> tuple[ParsedCase, dict]:
+def parse_rep(path: str) -> ParsedCase:
     input_path = Path(path)
     with input_path.open("r", encoding="utf-8", errors="ignore") as handle:
         lines = [line.rstrip("\n") for line in handle]
 
     parsed = _parse_lines(lines)
-    fallback_used = None
     if input_path.suffix.lower() == ".bkp":
         if not parsed.streams and not parsed.blocks:
             streams, blocks = _parse_bkp_entities(lines)
@@ -459,14 +392,7 @@ def parse_rep_with_log(path: str) -> tuple[ParsedCase, dict]:
                 with rep_candidate.open("r", encoding="utf-8", errors="ignore") as handle:
                     rep_lines = [line.rstrip("\n") for line in handle]
                 parsed = _parse_lines(rep_lines)
-                fallback_used = str(rep_candidate)
 
-    log = _build_parse_log(parsed, source=str(input_path), fallback=fallback_used)
-    return parsed, log
-
-
-def parse_rep(path: str) -> ParsedCase:
-    parsed, _ = parse_rep_with_log(path)
     return parsed
 
 
