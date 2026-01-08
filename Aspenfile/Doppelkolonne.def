@@ -1,0 +1,11 @@
+INPUT: Doppelkolonne.inm
+MODNAME: apmain
+RUNID: Doppelkolonne
+NEW_RUNID: Doppelkolonne
+OLD_RUNID: Doppelkolonne
+PDF: Doppelkolonne.appdf
+USERNAME: Felin
+XMOD: C:\Program Files\AspenTech\Aspen Plus V14.0\Engine\xeq\apmain
+dlopt: C:\Users\Felin\Documents\Masterthesis\Code\Aspen\Masterthesis\latest\exergy.opt
+SPONLY:
+DBCONN: _3528ydw.ads

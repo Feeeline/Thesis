@@ -1,0 +1,3606 @@
+
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + +                                                                         + +
+ + +                      ASPEN PLUS CALCULATION HISTORY                     + +
+ + +                                                                         + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+
+ ASPEN PLUS IS A TRADEMARK OF           HOTLINE:
+ ASPEN TECHNOLOGY, INC.                 U.S.A. 888/996-7100
+ 781/221-6400                           EUROPE (44) 1189-226555
+
+ PLATFORM: WIN-X64                                       JANUARY 7, 2026     
+ VERSION: 40.0   Build 362 Patchlevel 2                  WEDNESDAY   
+ INSTALLATION:                                           4:35:41 P.M.        
+
+ THIS COPY OF ASPEN PLUS LICENSED TO TECHNICAL UNIVERSITY BER        
+
+
+      ASPEN PLUS (R) IS A PROPRIETARY PRODUCT OF ASPEN TECHNOLOGY, INC.
+      (ASPENTECH), AND MAY BE USED ONLY UNDER AGREEMENT WITH ASPENTECH.
+      RESTRICTED RIGHTS LEGEND:  USE, REPRODUCTION, OR DISCLOSURE BY THE
+      U.S. GOVERNMENT IS SUBJECT TO RESTRICTIONS SET FORTH IN 
+      (i) FAR 52.227-14, Alt. III, (ii) FAR 52.227-19, (iii) DFARS 
+      252.227-7013(c)(1)(ii), or (iv) THE ACCOMPANYING LICENSE AGREEMENT,
+      AS APPLICABLE. FOR PURPOSES OF THE FAR, THIS SOFTWARE SHALL BE DEEMED
+      TO BE "UNPUBLISHED" AND LICENSED WITH DISCLOSURE PROHIBITIONS.
+      CONTRACTOR/SUBCONTRACTOR: ASPEN TECHNOLOGY, INC. 20 CROSBY DRIVE,
+      BEDFORD, MA 01730.
+ *** INPUT SUMMARY ***
+
+ >>CURRENT RUN
+
+   ORIGINAL RUN                           JANUARY 7, 2026     
+   4:35:41 P.M.                           WEDNESDAY   
+   INPUT FILE: _3528ydw.inm
+   RUN ID : _3528ydw
+          1    ;
+          2    ;Input file created by Aspen Plus Rel. 40.0 at 16:35:41 Wed Jan 7, 2026
+          3    ;Directory   Runid DOPPELKOLONNE_SPEZ_ENERGIE
+          4    ;
+          5
+          6
+          7    DYNAMICS
+          8        DYNAMICS RESULTS=ON
+          9
+         10    TITLE 'Air Separation Nitrogen'
+         11
+         12    IN-UNITS SI SHORT-LENGTH=mm
+         13
+         14    DEF-STREAMS CONVEN ALL
+         15
+         16    SIM-OPTIONS MASS-BAL-CHE=YES NPHASE=2 ATM-PRES=1.01325 <bar>  &
+         17            REF-TEMP=15. <C> REF-PRES=1.01325 <bar> ADSCNVG=YES
+         18
+         19    MODEL-OPTION
+         20
+         21    DATABANKS 'APV140 PURE40' / 'APV140 AQUEOUS' / 'APV140 SOLIDS' &
+         22             / 'APV140 INORGANIC' / 'APESV140 AP-EOS' /  &
+         23            'NISTV140 NIST-TRC' / NOASPENPCD
+         24
+         25    PROP-SOURCES 'APV140 PURE40' / 'APV140 AQUEOUS' /  &
+         26            'APV140 SOLIDS' / 'APV140 INORGANIC' / 'APESV140 AP-EOS' &
+         27             / 'NISTV140 NIST-TRC'
+         28
+         29    COMPONENTS
+         30        N2 N2 /
+         31        O2 O2 /
+         32        AR AR /
+         33        CO2 CO2 /
+         34        H2O H2O
+         35
+         36    SOLVE
+         37        RUN-MODE MODE=SIM
+         38
+         39    FLOWSHEET
+         40        BLOCK LK1 IN=S1 OUT=S2 S37
+         41        BLOCK LK2 IN=S3 OUT=S4 S38
+         42        BLOCK ZK1 IN=S2 OUT=S3
+         43        BLOCK ZK2 IN=S4 OUT=S5
+         44        BLOCK GW1 IN=S5 OUT=S6 S7
+         45        BLOCK GW2 IN=S6 OUT=S10 S9 S8
+         46        BLOCK KOLHP IN=S12 OUT=S15 S17 S13
+         47        BLOCK KOLLP IN=S14 S21 S18 OUT=S29 S22 Q2
+         48        BLOCK REB IN=S26 Q2 OUT=S27
+         49        BLOCK D1 IN=S13 OUT=S14
+         50        BLOCK D3 IN=S22 OUT=S23
+         51        BLOCK T1 IN=S20 OUT=S21 S36
+         52        BLOCK SPLIT2 IN=S23 OUT=S26 S24
+         53        BLOCK SPLIT1 IN=S8 OUT=S19 S11
+         54        BLOCK MW IN=S11 S19 S15 S29 S27 OUT=S12 S20 S16 S28  &
+         55            S30
+         56        BLOCK D4 IN=S24 OUT=S25
+         57        BLOCK D2 IN=S17 OUT=S18
+         58        BLOCK RC IN=Z1 Z3 OUT=Z2 Z4
+         59        BLOCK PK1 IN=S30 OUT=S31 S39
+         60        BLOCK MIX1 IN=S31 S16 OUT=S32
+         61
+         62    PROPERTIES PENG-ROB
+         63
+         64    PROP-DATA PRKBV-1
+         65        IN-UNITS SI TEMPERATURE=C SHORT-LENGTH=mm
+         66        PROP-LIST PRKBV
+         67        BPVAL N2 O2 -.0119000000 0.0 0.0 -273.1500000 726.8500000
+         68        BPVAL O2 N2 -.0119000000 0.0 0.0 -273.1500000 726.8500000
+         69        BPVAL N2 AR -2.6000000E-3 0.0 0.0 -273.1500000 726.8500000
+         70        BPVAL AR N2 -2.6000000E-3 0.0 0.0 -273.1500000 726.8500000
+         71        BPVAL N2 CO2 -.0170000000 0.0 0.0 -273.1500000 726.8500000
+         72        BPVAL CO2 N2 -.0170000000 0.0 0.0 -273.1500000 726.8500000
+         73        BPVAL O2 AR .0104000000 0.0 0.0 -273.1500000 726.8500000
+         74        BPVAL AR O2 .0104000000 0.0 0.0 -273.1500000 726.8500000
+         75        BPVAL CO2 H2O .1200000000 0.0 0.0 -273.1500000 726.8500000
+         76        BPVAL H2O CO2 .1200000000 0.0 0.0 -273.1500000 726.8500000
+         77
+         78    USER-PROPERT USRECH SUBROUTINE=USRECH FLASH=YES  &
+         79            UNIT-TYPE=ENTHALPY-FLO
+         80
+         81    USER-PROPERT USREME SUBROUTINE=USREME FLASH=YES  &
+         82            UNIT-TYPE=ENTHALPY-FLO
+         83
+         84    USER-PROPERT USREPH SUBROUTINE=USREPH FLASH=YES  &
+         85            UNIT-TYPE=ENTHALPY-FLO
+         86
+         87    USER-PROPERT USRETH SUBROUTINE=USRETH FLASH=YES  &
+         88            UNIT-TYPE=ENTHALPY-FLO
+         89
+         90    PROP-SET USR USRECH USREPH USRETH USREME UNITS='kW'  &
+         91            SUBSTREAM=MIXED
+         92
+         93    STREAM S1
+         94        SUBSTREAM MIXED TEMP=15. <C> PRES=1.01325 <bar>  &
+         95            MASS-FLOW=20.
+         96        MOLE-FRAC N2 0.7729 / O2 0.2074 / AR 0.00921 / CO2  &
+         97            0.000396 / H2O 0.0101
+         98
+         99    STREAM Z1
+        100        SUBSTREAM MIXED TEMP=96.491513631 PRES=600000.  &
+        101            MOLE-FLOW=0.30538553683
+        102        MOLE-FLOW N2 0.99998341631
+        103
+        104    STREAM Z3
+        105        SUBSTREAM MIXED TEMP=92.855340279 PRES=303920. MOLE-FLOW=0.1
+        106        MOLE-FLOW N2 0.50969896361 / O2 0.46947038262 / AR  &
+        107            0.02083065267
+        108
+        109    DEF-STREAMS HEAT Q2
+        110
+        111    DEF-STREAMS WORK S36
+        112
+        113    DEF-STREAMS WORK S37
+        114
+        115    DEF-STREAMS WORK S38
+        116
+        117    DEF-STREAMS WORK S39
+        118
+        119    BLOCK MIX1 MIXER
+        120        PARAM
+        121
+        122    BLOCK SPLIT1 FSPLIT
+        123        FRAC S19 0.16
+        124
+        125    BLOCK SPLIT2 FSPLIT
+        126        FRAC S26 1.
+        127
+        128    BLOCK GW2 SEP
+        129        PARAM
+        130        FRAC STREAM=S9 SUBSTREAM=MIXED COMPS=CO2 H2O FRACS=0.  &
+        131            1.
+        132        FRAC STREAM=S8 SUBSTREAM=MIXED COMPS=N2 O2 AR H2O  &
+        133            FRACS=1. 1. 1. 0.
+        134        MOLE-FLOW STREAM=S8 SUBSTREAM=MIXED COMPS=CO2 FLOWS=5E-10
+        135
+        136    BLOCK REB HEATER
+        137        PARAM PRES=-0.1 <bar> DPPARMOPT=NO
+        138
+        139    BLOCK ZK1 HEATER
+        140        PARAM TEMP=35. <C> PRES=-0.1 <bar> DPPARMOPT=NO
+        141
+        142    BLOCK ZK2 HEATER
+        143        PARAM TEMP=35. <C> PRES=-0.1 <bar> DPPARMOPT=NO
+        144
+        145    BLOCK GW1 FLASH2
+        146        PARAM TEMP=35. <C> PRES=-0.1 <bar>
+        147
+        148    BLOCK MW MHEATX
+        149        HOT-SIDE IN=S11 OUT=S12 VFRAC=0.9 PRES=-0.1 <bar>  &
+        150            FREE-WATER=NO DPPARMOPT=NO
+        151        HOT-SIDE IN=S19 OUT=S20 DEGSUP=2. PRES=-0.1 <bar>  &
+        152            FREE-WATER=NO DPPARMOPT=NO
+        153        COLD-SIDE IN=S15 OUT=S16 PRES=-0.1 <bar> FREE-WATER=NO  &
+        154            DPPARMOPT=NO
+        155        COLD-SIDE IN=S29 OUT=S30 PRES=-0.1 <bar> FREE-WATER=NO  &
+        156            DPPARMOPT=NO
+        157        COLD-SIDE IN=S27 OUT=S28 PRES=-0.1 <bar> FREE-WATER=NO  &
+        158            DPPARMOPT=NO
+        159
+        160    BLOCK RC MHEATX
+        161        HOT-SIDE IN=Z1 OUT=Z2 DUTY=-2383985.02 FREE-WATER=NO  &
+        162            DPPARMOPT=NO
+        163        COLD-SIDE IN=Z3 OUT=Z4 FREE-WATER=NO DPPARMOPT=NO
+        164        PARAM NPOINT=20 ADAPTIVE-GRI=YES
+        165
+        166    BLOCK KOLHP RADFRAC
+        167        PARAM NSTAGE=50 ALGORITHM=STANDARD INIT-OPTION=CRYOGENIC  &
+        168            HYDRAULIC=NO MAXOL=25 DAMPING=NONE
+        169        PARAM2 STATIC-DP=YES OLD-SULZER=NO
+        170        COL-CONFIG CONDENSER=PARTIAL-V-L REBOILER=NONE  &
+        171            CA-CONFIG=INT-1
+        172        FEEDS S12 50 ON-STAGE
+        173        PRODUCTS S13 50 L / S15 1 V / S17 1 L
+        174        P-SPEC 1 6.1 <bar>
+        175        COL-SPECS DP-STAGE=0.08 <kPa> MOLE-RDV=0.5 MOLE-RR=0.3
+        176        SC-REFLUX DEGSUB=0. OPTION=0
+        177        REPORT NOHYDRAULIC
+        178
+        179    BLOCK KOLLP RADFRAC
+        180        PARAM NSTAGE=50 ALGORITHM=STANDARD HYDRAULIC=NO MAXOL=25  &
+        181            DAMPING=NONE
+        182        PARAM2 STATIC-DP=YES OLD-SULZER=NO
+        183        COL-CONFIG CONDENSER=PARTIAL-V CA-CONFIG=INT-1
+        184        FEEDS S14 38 ABOVE-STAGE / S21 20 / S18 1
+        185        PRODUCTS S29 1 V / S22 50 L
+        186        PRODUCTS Q2 1
+        187        P-SPEC 1 3. <bar>
+        188        COL-SPECS QN=3. <MW> DP-STAGE=0.08 <kPa> MOLE-BR=0.01
+        189        SC-REFLUX TEMP=2.
+        190        REPORT NOHYDRAULIC
+        191
+        192    BLOCK LK1 COMPR
+        193        PARAM TYPE=ISENTROPIC PRES=2.45 <bar> SEFF=0.84 MEFF=0.99  &
+        194            SB-MAXIT=30 SB-TOL=0.0001
+        195
+        196    BLOCK LK2 COMPR
+        197        PARAM TYPE=ISENTROPIC PRES=6.35 <bar> SEFF=0.84 MEFF=0.99  &
+        198            SB-MAXIT=30 SB-TOL=0.0001
+        199
+        200    BLOCK PK1 COMPR
+        201        PARAM TYPE=ISENTROPIC PRES=4. <bar> SEFF=0.84 MEFF=0.99  &
+        202            SB-MAXIT=30 SB-TOL=0.0001
+        203
+        204    BLOCK T1 COMPR
+        205        PARAM TYPE=ISENTROPIC PRES=3.02 <bar> SEFF=0.85 MEFF=0.99  &
+        206            SB-MAXIT=30 SB-TOL=0.0001 MODEL-TYPE=TURBINE
+        207        PERFOR-PARAM CALC-SPEED=NO
+        208
+        209    BLOCK D1 VALVE
+        210        PARAM P-OUT=3.03 <bar>
+        211
+        212    BLOCK D2 VALVE
+        213        PARAM P-OUT=2. <bar>
+        214
+        215    BLOCK D3 VALVE
+        216        PARAM P-DROP=3.
+        217
+        218    BLOCK D4 VALVE
+        219        PARAM P-OUT=1.013 <bar>
+        220
+        221    DESIGN-SPEC DURCH
+        222        DEFINE S15 STREAM-VAR STREAM=S15 SUBSTREAM=MIXED  &
+        223            VARIABLE=MASS-FLOW UOM="kg/sec"
+        224        DEFINE S17 STREAM-VAR STREAM=S29 SUBSTREAM=MIXED  &
+        225            VARIABLE=MASS-FLOW UOM="kg/sec"
+        226        SPEC "S15 + S17" TO "16"
+        227        TOL-SPEC "0.5"
+        228        VARY STREAM-VAR STREAM=S1 SUBSTREAM=MIXED VARIABLE=MASS-FLOW  &
+        229            UOM="kg/sec"
+        230        LIMITS "0" "100"
+        231
+        232    DESIGN-SPEC XN1
+        233    ;  'Minimaler Reflux'
+        234
+        235        DEFINE XN1 MOLE-FRAC STREAM=S16 SUBSTREAM=MIXED  &
+        236            COMPONENT=N2
+        237        SPEC "XN1" TO "0.99999"
+        238        TOL-SPEC "0.00001"
+        239        VARY BLOCK-VAR BLOCK=KOLHP VARIABLE=MOLE-RR  &
+        240            SENTENCE=COL-SPECS
+        241        LIMITS "0.001" "3"
+        242
+        243    DESIGN-SPEC XN2
+        244        DEFINE XN2 MOLE-FRAC STREAM=S29 SUBSTREAM=MIXED  &
+        245            COMPONENT=N2
+        246        SPEC "XN2" TO "0.99999"
+        247        TOL-SPEC "0.00001"
+        248        VARY BLOCK-VAR BLOCK=KOLHP VARIABLE=MOLE-RDV  &
+        249            SENTENCE=COL-SPECS
+        250        LIMITS "0.5" "0.99"
+        251
+        252    DESIGN-SPEC XN2REST
+        253        DEFINE XN2REST MOLE-FRAC STREAM=S22 SUBSTREAM=MIXED  &
+        254            COMPONENT=N2
+        255        SPEC "XN2REST" TO "0.48"
+        256        TOL-SPEC "0.03"
+        257        VARY BLOCK-VAR BLOCK=KOLLP VARIABLE=MOLE-BR  &
+        258            SENTENCE=COL-SPECS
+        259        LIMITS "0.001" "100"
+        260
+        261    EO-CONV-OPTI
+        262
+        263    CALCULATOR KOMPV
+        264        DEFINE P BLOCK-VAR BLOCK=LK2 VARIABLE=PRES SENTENCE=PARAM  &
+        265            UOM="bar"
+        266        DEFINE PIN STREAM-VAR STREAM=S1 SUBSTREAM=MIXED  &
+        267            VARIABLE=PRES UOM="bar"
+        268        DEFINE PINT BLOCK-VAR BLOCK=LK1 VARIABLE=PRES  &
+        269            SENTENCE=PARAM UOM="bar"
+        270    F     DP = 0.1
+        271    F     DISCR  = DP*DP + 4.0*PIN*P
+        272    F     P1OUT  = (DP + SQRT(DISCR)) / 2.0
+        273    F     PINT   = P1OUT - DP
+        274        READ-VARS P PIN
+        275        WRITE-VARS PINT
+        276        EXECUTE BEFORE BLOCK LK1
+        277
+        278    CALCULATOR MOLZ1
+        279        DEFINE MOLZ1 STREAM-VAR STREAM=Z1 SUBSTREAM=MIXED  &
+        280            VARIABLE=MOLE-FLOW UOM="kmol/sec"
+        281        DEFINE HPRR BLOCK-VAR BLOCK=KOLHP VARIABLE=L1  &
+        282            SENTENCE=COL-RESULTS UOM="kmol/sec"
+        283        DEFINE HPLIQDES STREAM-VAR STREAM=S17 SUBSTREAM=MIXED  &
+        284            VARIABLE=MOLE-FLOW UOM="kmol/sec"
+        285    F     MOLZ1 = HPLIQDES + HPRR
+        286        READ-VARS HPRR HPLIQDES
+        287        WRITE-VARS MOLZ1
+        288        EXECUTE AFTER TRANSFER HP-D
+        289
+        290    CALCULATOR MOLZ3
+        291        DEFINE MOLZ3 STREAM-VAR STREAM=Z3 SUBSTREAM=MIXED  &
+        292            VARIABLE=MOLE-FLOW UOM="kmol/sec"
+        293        DEFINE LPBRR BLOCK-VAR BLOCK=KOLLP VARIABLE=VN  &
+        294            SENTENCE=COL-RESULTS UOM="kmol/sec"
+        295    F     MOLZ3 = LPBRR
+        296        READ-VARS LPBRR
+        297        WRITE-VARS MOLZ3
+        298        EXECUTE AFTER TRANSFER LP-B
+        299
+        300    CALCULATOR PFEEDD1
+        301        DEFINE D1 BLOCK-VAR BLOCK=D1 VARIABLE=P-OUT SENTENCE=PARAM  &
+        302            UOM="bar"
+        303        DEFINE PLP BLOCK-VAR BLOCK=KOLLP VARIABLE=PRES  &
+        304            SENTENCE=P-SPEC ID1=1 UOM="bar"
+        305    F     D1 = PLP + 38 * 0.0008
+        306        READ-VARS PLP
+        307        WRITE-VARS D1
+        308        EXECUTE BEFORE BLOCK D1
+        309
+        310    CALCULATOR PFEEDD2
+        311        DEFINE D2 BLOCK-VAR BLOCK=D2 VARIABLE=P-OUT SENTENCE=PARAM  &
+        312            UOM="bar"
+        313        DEFINE PLP BLOCK-VAR BLOCK=KOLLP VARIABLE=PRES  &
+        314            SENTENCE=P-SPEC ID1=1 UOM="bar"
+        315    F     D2 = PLP
+        316        READ-VARS PLP
+        317        WRITE-VARS D2
+        318        EXECUTE BEFORE BLOCK D2
+        319
+        320    CALCULATOR PFEEDHP
+        321        DEFINE PLK2 BLOCK-VAR BLOCK=LK2 VARIABLE=PRES  &
+        322            SENTENCE=PARAM UOM="bar"
+        323        DEFINE PHP BLOCK-VAR BLOCK=KOLHP VARIABLE=PRES  &
+        324            SENTENCE=P-SPEC ID1=1 UOM="bar"
+        325    F     PLK2 = PHP + 50 * 0.0008 + 0.3
+        326        READ-VARS PHP
+        327        WRITE-VARS PLK2
+        328        EXECUTE FIRST
+        329
+        330    CALCULATOR PFEEDT1
+        331        DEFINE T1 BLOCK-VAR BLOCK=T1 VARIABLE=PRES SENTENCE=PARAM  &
+        332            UOM="bar"
+        333        DEFINE PLP BLOCK-VAR BLOCK=KOLLP VARIABLE=PRES  &
+        334            SENTENCE=P-SPEC ID1=1 UOM="bar"
+        335    F     T1 = PLP + 20 * 0.0008
+        336        WRITE-VARS T1
+        337        EXECUTE BEFORE BLOCK T1
+        338
+        339    CALCULATOR PPROD
+        340        DEFINE PHP BLOCK-VAR BLOCK=KOLHP VARIABLE=PRES  &
+        341            SENTENCE=P-SPEC ID1=1 UOM="bar"
+        342        DEFINE PPK1 BLOCK-VAR BLOCK=PK1 VARIABLE=PRES  &
+        343            SENTENCE=PARAM UOM="bar"
+        344    F     PPK1 = PHP
+        345        READ-VARS PHP
+        346        WRITE-VARS PPK1
+        347
+        348    CALCULATOR Q1
+        349        DEFINE QREB BLOCK-VAR BLOCK=KOLLP VARIABLE=QN  &
+        350            SENTENCE=COL-SPECS UOM="Watt"
+        351        DEFINE QKOND BLOCK-VAR BLOCK=KOLHP VARIABLE=COND-DUTY  &
+        352            SENTENCE=RESULTS UOM="Watt"
+        353    F     QREB =-QKOND
+        354        READ-VARS QKOND
+        355        WRITE-VARS QREB
+        356
+        357    CALCULATOR SPEZE
+        358        DEFINE WLK1 BLOCK-VAR BLOCK=LK1 VARIABLE=NET-WORK  &
+        359            SENTENCE=RESULTS UOM="kW"
+        360        DEFINE WLK2 BLOCK-VAR BLOCK=LK2 VARIABLE=NET-WORK  &
+        361            SENTENCE=RESULTS UOM="kW"
+        362        DEFINE WPK1 BLOCK-VAR BLOCK=PK1 VARIABLE=NET-WORK  &
+        363            SENTENCE=RESULTS UOM="kW"
+        364        DEFINE WTURB1 BLOCK-VAR BLOCK=T1 VARIABLE=NET-WORK  &
+        365            SENTENCE=RESULTS UOM="kW"
+        366        DEFINE PROFLOW STREAM-VAR STREAM=S32 SUBSTREAM=MIXED  &
+        367            VARIABLE=MOLE-FLOW UOM="kmol/hr"
+        368        DEFINE ESPECN LOCAL-PARAM
+        369        DEFINE ESPECST LOCAL-PARAM
+        370    F     WEL = WLK1 + WLK2 + WPK1 - WTURB1
+        371    F     VM0  = 22.414
+        372    F     VM15 = 22.414*(288.15/273.15)
+        373    F     V0  = PROFLOW * VM0
+        374    F     V15 = PROFLOW * VM15
+        375    F     ESPECN  = WEL / V0
+        376    F     ESPECST = WEL / V15
+        377        READ-VARS WLK1 WTURB1 WLK2 WPK1 PROFLOW
+        378        WRITE-VARS ESPECN ESPECST
+        379        EXECUTE LAST
+        380
+        381    TRANSFER HP-D
+        382        SET STREAM Z1
+        383        EQUAL-TO STREAM S15
+        384
+        385    TRANSFER LP-B
+        386        SET STREAM Z3
+        387        EQUAL-TO STREAM S22
+        388
+        389    SENSITIVITY S-1
+        390        DEFINE XN2REST2 MOLE-FRAC STREAM=S22 SUBSTREAM=MIXED  &
+        391            COMPONENT=N2
+        392        TABULATE 1 "XN2REST2"
+        393        VARY BLOCK-VAR BLOCK=SPLIT1 SENTENCE=FRAC VARIABLE=FRAC  &
+        394            ID1=S19
+        395        RANGE OPT-LIST=RANGE LOWER="0.01" UPPER="0.5" NPOINT="50"
+        396
+        397    STREAM-REPOR MOLEFLOW PROPERTIES=USR
+        398
+        399    DISABLE
+        400        BLOCK D4
+        401        SENSITIVITY S-1
+        402    ;
+        403    ;
+        404    ;
+        405    ;
+        406    ;
+ *** INPUT TRANSLATOR MESSAGES ***
+
+  *** THIS RUN USES THE PROPERTIES ENTERPRISE DATABASE ***
+      SQLLOCALDB.APESV140 : (DATAVERSION - 40.0.0.13)                         
+      SQLLOCALDB.APESV145 : (DATAVERSION - 40.0.0.1)                          
+      SQLLOCALDB.APV140 : (DATAVERSION - 40.0.0.13)                           
+      SQLLOCALDB.FACTV140 : (DATAVERSION - 40.0.0.12)                         
+      SQLLOCALDB.NISTV140 : (DATAVERSION - 40.0.0.12)                         
+
+  *   WARNING IN THE "STREAM" PARAGRAPH WHICH BEGINS ON LINE 99                 
+      STREAM NAME: Z1                                          (STSTRM.29)      
+      COMPONENT MOLE FLOWS OF SUBSTREAM: "MIXED"                                
+      ARE NORMALIZED TO THE TOTAL MOLE FLOW VALUE.                              
+
+  *   WARNING IN THE "STREAM" PARAGRAPH WHICH BEGINS ON LINE 104                
+      STREAM NAME: Z3                                          (STSTRM.29)      
+      COMPONENT MOLE FLOWS OF SUBSTREAM: "MIXED"                                
+      ARE NORMALIZED TO THE TOTAL MOLE FLOW VALUE.                              
+
+   Disable STREAM S25 due to disabled source AND destination
+
+ 
+ DESIGN SPEC: DURCH WILL BE INTERPRETED 
+ DESIGN SPEC: XN1 WILL BE INTERPRETED 
+ DESIGN SPEC: XN2 WILL BE INTERPRETED 
+ DESIGN SPEC: XN2REST WILL BE INTERPRETED 
+ CALCULATOR BLOCK: KOMPV WILL BE INTERPRETED 
+ CALCULATOR BLOCK: MOLZ1 WILL BE INTERPRETED 
+ CALCULATOR BLOCK: MOLZ3 WILL BE INTERPRETED 
+ CALCULATOR BLOCK: PFEEDD1 WILL BE INTERPRETED 
+ CALCULATOR BLOCK: PFEEDD2 WILL BE INTERPRETED 
+ CALCULATOR BLOCK: PFEEDHP WILL BE INTERPRETED 
+ CALCULATOR BLOCK: PFEEDT1 WILL BE INTERPRETED 
+ CALCULATOR BLOCK: PPROD WILL BE INTERPRETED 
+ CALCULATOR BLOCK: Q1 WILL BE INTERPRETED 
+ CALCULATOR BLOCK: SPEZE WILL BE INTERPRETED 
+ SENSITIVITY BLOCK: S-1 WILL BE INTERPRETED 
+ 
+
+ PDF updated                                                                      TIME =      2.75
+
+ *** CALCULATION TRACE ***
+
+ AIR SEPARATION NITROGEN                                         
+
+ *** FLOWSHEET ANALYSIS MESSAGES ***
+
+ FLOWSHEET CONNECTIVITY BY STREAMS       
+
+   STREAM     SOURCE     DEST           STREAM     SOURCE     DEST
+   S1         ----       LK1            Z3         ----       $RCHTR  
+   Z1         ----       $RCH01         S2         LK1        ZK1     
+   S37        LK1        ----           S4         LK2        ZK2     
+   S38        LK2        ----           S3         ZK1        LK2     
+   S5         ZK2        GW1            S6         GW1        GW2     
+   S7         GW1        ----           S10        GW2        ----    
+   S9         GW2        ----           S8         GW2        SPLIT1  
+   S15        KOLHP      $MWHTR         S17        KOLHP      D2      
+   S13        KOLHP      D1             S29        KOLLP      $MWHTR  
+   S22        KOLLP      D3             Q2         KOLLP      REB     
+   S27        REB        $MWHTR         S14        D1         KOLLP   
+   S23        D3         SPLIT2         S21        T1         KOLLP   
+   S36        T1         ----           S26        SPLIT2     REB     
+   S24        SPLIT2     D4             S19        SPLIT1     $MWH02  
+   S11        SPLIT1     $MWH01         S12        $MWH01     KOLHP   
+   S20        $MWH02     T1             S16        $MWHTR     MIX1    
+   S28        $MWHTR     ----           S30        $MWHTR     PK1     
+   S25        D4         ----           S18        D2         KOLLP   
+   Z2         $RCH01     ----           Z4         $RCHTR     ----    
+   S31        PK1        MIX1           S39        PK1        ----    
+   S32        MIX1       ----           $MWQ01     $MWH01     $MWHTR  
+   $MWQ02     $MWH02     $MWHTR         $RCQ01     $RCH01     $RCHTR  
+
+ FLOWSHEET CONNECTIVITY BY BLOCKS        
+
+   BLOCK        INLETS                         OUTLETS
+   LK1          S1                             S2 S37                      
+   LK2          S3                             S4 S38                      
+   ZK1          S2                             S3                          
+   ZK2          S4                             S5                          
+   GW1          S5                             S6 S7                       
+   GW2          S6                             S10 S9 S8                   
+   KOLHP        S12                            S15 S17 S13                 
+   KOLLP        S14 S21 S18                    S29 S22 Q2                  
+   REB          S26 Q2                         S27                         
+   D1           S13                            S14                         
+   D3           S22                            S23                         
+   T1           S20                            S21 S36                     
+   SPLIT2       S23                            S26 S24                     
+   SPLIT1       S8                             S19 S11                     
+   D4           S24                            S25                         
+   D2           S17                            S18                         
+   PK1          S30                            S31 S39                     
+   MIX1         S31 S16                        S32                         
+   $MWH01       S11                            S12 $MWQ01                  
+   $MWH02       S19                            S20 $MWQ02                  
+   $MWHTR       S15 S29 S27 $MWQ01 $MWQ02      S16 S30 S28                 
+   $RCH01       Z1                             Z2 $RCQ01                   
+   $RCHTR       Z3 $RCQ01                      Z4                          
+
+      BLOCK $OLVER01 (METHOD: SECANT  ) HAS BEEN DEFINED TO CONVERGE
+                SPECS : DURCH
+
+      BLOCK $OLVER02 (METHOD: SECANT  ) HAS BEEN DEFINED TO CONVERGE
+                SPECS : XN1
+
+      BLOCK $OLVER03 (METHOD: SECANT  ) HAS BEEN DEFINED TO CONVERGE
+                SPECS : XN2
+
+      BLOCK $OLVER04 (METHOD: SECANT  ) HAS BEEN DEFINED TO CONVERGE
+                SPECS : XN2REST
+
+      COMPUTATION ORDER FOR THE FLOWSHEET IS:
+      PFEEDHP 
+      $OLVER02 
+      |  $OLVER01 KOMPV LK1 ZK1 LK2 ZK2 GW1 GW2 SPLIT1 $MWH02 PFEEDT1 T1 
+      |  |  $MWH01 
+      |  |  $OLVER03 KOLHP PFEEDD2 D2 PFEEDD1 D1 Q1 
+      |  |  |  $OLVER04 KOLLP 
+      |  |  |  (RETURN $OLVER04) 
+      |  |  (RETURN $OLVER03) 
+      |  (RETURN $OLVER01) 
+      |  D3 SPLIT2 REB $MWHTR 
+      (RETURN $OLVER02) 
+      PPROD PK1 MIX1 LP-B MOLZ3 HP-D MOLZ1 $RCH01 $RCHTR SPEZE 
+
+Calculations begin                                                              time      0.30
+
+
+ SIMULATION CALCULATIONS BEGIN                                                    TIME =      0.30
+
+      CALCULATOR BLOCK PFEEDHP                                                    TIME =      0.30
+
+      CONVERGENCE BLOCK $OLVER02  METHOD: SECANT                                  TIME =      0.30
+     SPECS: XN1
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      0.30
+     SPECS: DURCH
+
+      ENTHALPY CALCULATION FOR INLET STREAM S1 OF BLOCK LK1                       TIME =      0.30
+      KODE = 2  NTRIAL =   2  T = 288.1500  P =  101325.      V =  1.00000      Q =  0.00000    
+
+      CALCULATOR BLOCK KOMPV                                                      TIME =      0.30
+
+      UOS BLOCK LK1      MODEL: COMPR                                             TIME =      0.30
+      OUTLET TEMP =   389.0       OUTLET PRES =  0.2505E+06   INDICATED HP =  0.2041E+07   BRAKE HP =  0.2061E+07
+      ISENTR TEMP =   373.0      CALC ISENTR EFF =  0.8400      ISENTR HP =  0.1714E+07  HP =  0.1414E+07
+
+      UOS BLOCK ZK1      MODEL: HEATER                                            TIME =      0.31
+      KODE = 2  NTRIAL =   2  T = 308.1500  P =  240496.      V =  1.00000      Q =-1.643377E+06
+
+      UOS BLOCK LK2      MODEL: COMPR                                             TIME =      0.31
+      OUTLET TEMP =   426.6       OUTLET PRES =  0.6440E+06   INDICATED HP =  0.2403E+07   BRAKE HP =  0.2427E+07
+      ISENTR TEMP =   407.9      CALC ISENTR EFF =  0.8400      ISENTR HP =  0.2018E+07  HP =  0.1666E+07
+
+      UOS BLOCK ZK2      MODEL: HEATER                                            TIME =      0.31
+      KODE = 2  NTRIAL =   2  T = 308.1500  P =  634000.      V = 0.997682      Q =-2.496928E+06
+
+      UOS BLOCK GW1      MODEL: FLASH2                                            TIME =      0.31
+      KODE = 2  NTRIAL =   2  T = 308.1500  P =  624000.      V = 0.997802      Q =  4277.41    
+
+      UOS BLOCK GW2      MODEL: SEP                                               TIME =      0.31
+      ---FLASH OUTLET STREAM S10     :
+      KODE = 2  NTRIAL =   0  T = 308.1500  P =  624000.      V =  1.00000      Q =  0.00000    
+      ---FLASH OUTLET STREAM S9      :
+      KODE = 2  NTRIAL =   1  T = 308.1500  P =  624000.      V =  0.00000      Q =  0.00000    
+      ---FLASH OUTLET STREAM S8      :
+      KODE = 2  NTRIAL =   2  T = 308.1500  P =  624000.      V =  1.00000      Q =  0.00000    
+
+      UOS BLOCK SPLIT1   MODEL: FSPLIT                                            TIME =      0.31
+      SPLIT FRACTIONS:  0.16000D+00    0.84000D+00
+
+      UOS BLOCK $MWH02   MODEL: HEATER                                            TIME =      0.31
+      KODE = 3  NTRIAL =   8  T = 101.0408  P =  614000.      V =  1.00000      Q = -688565.    
+      KODE = 2  NTRIAL =   3  T = 103.0408  P =  614000.      V =  1.00000      Q = -681056.    
+
+      CALCULATOR BLOCK PFEEDT1                                                    TIME =      0.31
+
+      UOS BLOCK T1       MODEL: COMPR                                             TIME =      0.31
+      OUTLET TEMP =   92.17       OUTLET PRES =  0.3016E+06   INDICATED HP = -0.4629E+05   BRAKE HP = -0.4582E+05
+      ISENTR TEMP =   92.12      CALC ISENTR EFF =  0.8500      ISENTR HP = -0.5445E+05  HP =  -5079.    
+
+      UOS BLOCK $MWH01   MODEL: HEATER                                            TIME =      0.31
+      KODE = 3  NTRIAL =   8  T = 100.7257  P =  614000.      V = 0.900000      Q =-3.921919E+06
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      0.31
+     SPECS: XN2
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      0.31
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    2      609.20    
+          2    1    2      40.511    
+          3    1    2      3.4784    
+          4    1    2      2.0200    
+          5    1    2     0.25707    
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      0.32
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      0.32
+      KODE = 1  NTRIAL =   8  T =  89.8834  P =  300000.      V = 0.101121      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      0.33
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      0.33
+      KODE = 1  NTRIAL =   9  T =  91.8060  P =  303040.      V = 9.879691E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      0.33
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      0.33
+     SPECS: XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      0.33
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    2      26.575    
+          2    1    3     0.32463    
+
+  *** SEVERE ERROR WHILE EXECUTING UNIT OPERATIONS BLOCK: "KOLLP" (MODEL:       
+      "RADFRAC")                                               (UDL03.3)        
+      THE FOLLOWING STAGES DRIED UP (VAPOR OR LIQUID FLOW APPROACHES 0):        
+        1                                                                       
+      A LIMIT OF  0.10000E-04 * SUM OF FEEDS WAS IMPOSED ON THE FLOW RATES      
+      OR A LIMIT OF  0.10000E-04 WAS IMPOSED ON THE STAGE V/L OR L/V RATIO.     
+      KODE = 1  NTRIAL =   8  T =  89.6173  P =  300080.      V = 0.450872      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      0.33
+      ITER   0 For Specs:        XN2REST
+      SPEC   1 ERROR =  0.25063     OLD X =  0.10000E-01 NEW X =   1.0100    
+
+  LOOP $OLVER04 ITER    1:   1 VARS NOT CONVERGED, MAX ERR/TOL      8.3543        TIME =      0.35
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      0.36
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    5      17.281    
+          2    1    3     0.54615    
+      KODE = 1  NTRIAL =   8  T =  89.5420  P =  300080.      V = 0.566936      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      0.37
+      ITER   2 For Specs:        XN2REST
+      SPEC   1 ERROR =  0.11970     OLD X =   1.0100     NEW X =   1.9241    
+
+  LOOP $OLVER04 ITER    2:   1 VARS NOT CONVERGED, MAX ERR/TOL      3.9898        TIME =      0.37
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      0.37
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    9      34.350    
+          2    1    4      1.2261    
+          3    1    4     0.17927    
+      KODE = 1  NTRIAL =   8  T =  89.5344  P =  300080.      V = 0.629508      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      0.38
+      ITER   3 For Specs:        XN2REST
+      SPEC   1 ERROR = -0.20341     OLD X =   1.9241     NEW X =   1.4165    
+
+  LOOP $OLVER04 ITER    3:   1 VARS NOT CONVERGED, MAX ERR/TOL     -6.7803        TIME =      0.38
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      0.38
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    8      19.404    
+          2    1    4     0.46145    
+      KODE = 1  NTRIAL =   8  T =  89.5315  P =  300080.      V = 0.606739      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      0.38
+      ITER   4 For Specs:        XN2REST
+      SPEC   1 ERROR = -0.19208E-01                          X =   1.4165    
+
+  LOOP $OLVER04 ITER    4:     *** CONVERGED *** , MAX ERR/TOL    -0.64026        TIME =      0.38
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      0.38
+      ITER   0 For Specs:        XN2
+      SPEC   1 ERROR = -0.69845E-01 OLD X =  0.50000     NEW X =  0.50490    
+
+  LOOP $OLVER03 ITER    1:   1 VARS NOT CONVERGED, MAX ERR/TOL     -6984.5        TIME =      0.38
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      0.38
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    2     0.42340E-01
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      0.39
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      0.39
+      KODE = 1  NTRIAL =   8  T =  89.8897  P =  300000.      V = 0.101111      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      0.39
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      0.39
+      KODE = 1  NTRIAL =   9  T =  91.8062  P =  303040.      V = 9.879917E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      0.39
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      0.39
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      0.39
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    4     0.43374    
+      KODE = 1  NTRIAL =   8  T =  89.5339  P =  300080.      V = 0.608632      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      0.40
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR = -0.21607E-01                          X =   1.4165    
+
+  LOOP $OLVER04 ITER    1:     *** CONVERGED *** , MAX ERR/TOL    -0.72025        TIME =      0.41
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      0.41
+      ITER   2 For Specs:        XN2
+
+  **  ERROR WHILE EXECUTING CONVERGENCE BLOCK: "$OLVER03" (MODEL: "SECANT")     
+                                                               (MODSEC.9)       
+      EITHER SOLUTION OUTSIDE BOUNDS OR SPEC FUNCTION IS NOT MONOTONIC.         
+      REVERSING THE NESTING OF THE LOOPS BY CHANGING                            
+      DESIGN SPEC NESTING AND USER NESTING ON THE                               
+      CONV-OPTIONS.DEFAULTS.SEQUENCING SHEET MAY AID CONVERGENCE.               
+      THE CONVERGENCE LOOP WILL BE EVALUATED ONCE MORE.                         
+      SPEC   1 ERROR = -0.69937E-01 OLD X =  0.50490     NEW X =  0.50000    
+
+  LOOP $OLVER03 ITER    2:   1 VARS NOT CONVERGED, MAX ERR/TOL     -6993.7        TIME =      0.41
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      0.41
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    2     0.41964E-01
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      0.42
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      0.42
+      KODE = 1  NTRIAL =   8  T =  89.8832  P =  300000.      V = 0.101121      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      0.42
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      0.42
+      KODE = 1  NTRIAL =   9  T =  91.8062  P =  303040.      V = 9.879917E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      0.42
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      0.42
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      0.42
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    4     0.42131    
+      KODE = 1  NTRIAL =   8  T =  89.5314  P =  300080.      V = 0.606753      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      0.42
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR = -0.19344E-01                          X =   1.4165    
+
+  LOOP $OLVER04 ITER    1:     *** CONVERGED *** , MAX ERR/TOL    -0.64480        TIME =      0.42
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      0.42
+      ITER   3 For Specs:        XN2
+      THE CONVERGENCE LOOP WAS EVALUATED ONCE MORE.
+
+                    DESIGN SP/
+     VAR#  VAR NAME CALCULATOR VARIABLE DESCRIPTION                              NEW X            G(X)             X           ERR/TOL
+     ----  -------- --------   ------------------------------               --------------- --------------- --------------- ---------------
+        1  VARY     XN2     (3) KOLHP.COL-SPECS.MOLE-RDV                     0.50000000       0.0000000      0.50000000      -6984.5509      *   
+
+  LOOP $OLVER03 ITER    3:   1 VARS NOT CONVERGED, MAX ERR/TOL     -6984.6        TIME =      0.42
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      0.42
+      ITER   0 For Specs:        DURCH
+      SPEC   1 ERROR =  -2.3764     OLD X =  0.69311     NEW X =  0.72777    
+
+  LOOP $OLVER01 ITER    1:   1 VARS NOT CONVERGED, MAX ERR/TOL     -4.7528        TIME =      0.42
+
+      CALCULATOR BLOCK KOMPV                                                      TIME =      0.50
+
+      UOS BLOCK LK1      MODEL: COMPR                                             TIME =      0.50
+      OUTLET TEMP =   389.0       OUTLET PRES =  0.2505E+06   INDICATED HP =  0.2143E+07   BRAKE HP =  0.2164E+07
+      ISENTR TEMP =   373.0      CALC ISENTR EFF =  0.8400      ISENTR HP =  0.1800E+07  HP =  0.1559E+07
+
+      UOS BLOCK ZK1      MODEL: HEATER                                            TIME =      0.50
+      KODE = 2  NTRIAL =   2  T = 308.1500  P =  240496.      V =  1.00000      Q =-1.725545E+06
+
+      UOS BLOCK LK2      MODEL: COMPR                                             TIME =      0.50
+      OUTLET TEMP =   426.6       OUTLET PRES =  0.6440E+06   INDICATED HP =  0.2523E+07   BRAKE HP =  0.2549E+07
+      ISENTR TEMP =   407.9      CALC ISENTR EFF =  0.8400      ISENTR HP =  0.2119E+07  HP =  0.1836E+07
+
+      UOS BLOCK ZK2      MODEL: HEATER                                            TIME =      0.50
+      KODE = 2  NTRIAL =   1  T = 308.1500  P =  634000.      V = 0.997682      Q =-2.621774E+06
+
+      UOS BLOCK GW1      MODEL: FLASH2                                            TIME =      0.50
+      KODE = 2  NTRIAL =   1  T = 308.1500  P =  624000.      V = 0.997802      Q =  4491.28    
+
+      UOS BLOCK GW2      MODEL: SEP                                               TIME =      0.51
+      ---FLASH OUTLET STREAM S10     :
+      KODE = 2  NTRIAL =   0  T = 308.1500  P =  624000.      V =  1.00000      Q =  0.00000    
+      ---FLASH OUTLET STREAM S9      :
+      KODE = 2  NTRIAL =   1  T = 308.1500  P =  624000.      V =  0.00000      Q =  0.00000    
+      ---FLASH OUTLET STREAM S8      :
+      KODE = 2  NTRIAL =   2  T = 308.1500  P =  624000.      V =  1.00000      Q =  0.00000    
+
+      UOS BLOCK SPLIT1   MODEL: FSPLIT                                            TIME =      0.51
+      SPLIT FRACTIONS:  0.16000D+00    0.84000D+00
+
+      UOS BLOCK $MWH02   MODEL: HEATER                                            TIME =      0.51
+      KODE = 3  NTRIAL =   1  T = 101.0408  P =  614000.      V =  1.00000      Q = -722993.    
+      KODE = 2  NTRIAL =   3  T = 103.0408  P =  614000.      V =  1.00000      Q = -715109.    
+
+      CALCULATOR BLOCK PFEEDT1                                                    TIME =      0.51
+
+      UOS BLOCK T1       MODEL: COMPR                                             TIME =      0.51
+      OUTLET TEMP =   92.17       OUTLET PRES =  0.3016E+06   INDICATED HP = -0.4860E+05   BRAKE HP = -0.4811E+05
+      ISENTR TEMP =   92.12      CALC ISENTR EFF =  0.8500      ISENTR HP = -0.5718E+05  HP =  -5600.    
+
+      UOS BLOCK $MWH01   MODEL: HEATER                                            TIME =      0.51
+      KODE = 3  NTRIAL =   1  T = 100.7257  P =  614000.      V = 0.900000      Q =-4.118015E+06
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      0.51
+      ITER   0 For Specs:        XN2
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      0.51
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    1     0.24259E-03
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      0.51
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      0.51
+      KODE = 1  NTRIAL =   8  T =  89.8833  P =  300000.      V = 0.101120      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      0.51
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      0.51
+      KODE = 1  NTRIAL =   9  T =  91.8062  P =  303040.      V = 9.879918E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      0.51
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      0.51
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      0.51
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    2     0.11190E-01
+      KODE = 1  NTRIAL =   8  T =  89.5314  P =  300080.      V = 0.606752      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      0.51
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR = -0.19333E-01                          X =   1.4165    
+
+  LOOP $OLVER04 ITER    1:     *** CONVERGED *** , MAX ERR/TOL    -0.64442        TIME =      0.51
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      0.51
+      ITER   1 For Specs:        XN2
+
+  *   WARNING WHILE EXECUTING CONVERGENCE BLOCK: "$OLVER03" (MODEL: "SECANT")   
+                                                               (MODSEC.5)       
+      EITHER SOLUTION OUTSIDE BOUNDS OR SPEC FUNCTION IS NOT MONOTONIC.         
+      REVERSING THE NESTING OF THE LOOPS BY CHANGING                            
+      DESIGN SPEC NESTING AND USER NESTING ON THE                               
+      CONV-OPTIONS.DEFAULTS.SEQUENCING SHEET MAY AID CONVERGENCE.               
+
+                    DESIGN SP/
+     VAR#  VAR NAME CALCULATOR VARIABLE DESCRIPTION                              NEW X            G(X)             X           ERR/TOL
+     ----  -------- --------   ------------------------------               --------------- --------------- --------------- ---------------
+        1  VARY     XN2     (3) KOLHP.COL-SPECS.MOLE-RDV                     0.50000000       0.0000000      0.50000000      -6984.3672      *   
+
+  LOOP $OLVER03 ITER    1:   1 VARS NOT CONVERGED, MAX ERR/TOL     -6984.4        TIME =      0.60
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      0.60
+      ITER   2 For Specs:        DURCH
+      SPEC   1 ERROR =  -1.6956     OLD X =  0.72777     NEW X =  0.81407    
+
+  LOOP $OLVER01 ITER    2:   1 VARS NOT CONVERGED, MAX ERR/TOL     -3.3911        TIME =      0.60
+
+      CALCULATOR BLOCK KOMPV                                                      TIME =      0.60
+
+      UOS BLOCK LK1      MODEL: COMPR                                             TIME =      0.60
+      OUTLET TEMP =   389.0       OUTLET PRES =  0.2505E+06   INDICATED HP =  0.2397E+07   BRAKE HP =  0.2421E+07
+      ISENTR TEMP =   373.0      CALC ISENTR EFF =  0.8400      ISENTR HP =  0.2013E+07  HP =  0.1951E+07
+
+      UOS BLOCK ZK1      MODEL: HEATER                                            TIME =      0.60
+      KODE = 2  NTRIAL =   2  T = 308.1500  P =  240496.      V =  1.00000      Q =-1.930170E+06
+
+      UOS BLOCK LK2      MODEL: COMPR                                             TIME =      0.60
+      OUTLET TEMP =   426.6       OUTLET PRES =  0.6440E+06   INDICATED HP =  0.2822E+07   BRAKE HP =  0.2851E+07
+      ISENTR TEMP =   407.9      CALC ISENTR EFF =  0.8400      ISENTR HP =  0.2371E+07  HP =  0.2298E+07
+
+      UOS BLOCK ZK2      MODEL: HEATER                                            TIME =      0.60
+      KODE = 2  NTRIAL =   1  T = 308.1500  P =  634000.      V = 0.997682      Q =-2.932679E+06
+
+      UOS BLOCK GW1      MODEL: FLASH2                                            TIME =      0.60
+      KODE = 2  NTRIAL =   1  T = 308.1500  P =  624000.      V = 0.997802      Q =  5023.89    
+
+      UOS BLOCK GW2      MODEL: SEP                                               TIME =      0.60
+      ---FLASH OUTLET STREAM S10     :
+      KODE = 2  NTRIAL =   0  T = 308.1500  P =  624000.      V =  1.00000      Q =  0.00000    
+      ---FLASH OUTLET STREAM S9      :
+      KODE = 2  NTRIAL =   1  T = 308.1500  P =  624000.      V =  0.00000      Q =  0.00000    
+      ---FLASH OUTLET STREAM S8      :
+      KODE = 2  NTRIAL =   2  T = 308.1500  P =  624000.      V =  1.00000      Q =  0.00000    
+
+      UOS BLOCK SPLIT1   MODEL: FSPLIT                                            TIME =      0.60
+      SPLIT FRACTIONS:  0.16000D+00    0.84000D+00
+
+      UOS BLOCK $MWH02   MODEL: HEATER                                            TIME =      0.60
+      KODE = 3  NTRIAL =   1  T = 101.0408  P =  614000.      V =  1.00000      Q = -808730.    
+      KODE = 2  NTRIAL =   3  T = 103.0408  P =  614000.      V =  1.00000      Q = -799911.    
+
+      CALCULATOR BLOCK PFEEDT1                                                    TIME =      0.60
+
+      UOS BLOCK T1       MODEL: COMPR                                             TIME =      0.60
+      OUTLET TEMP =   92.17       OUTLET PRES =  0.3016E+06   INDICATED HP = -0.5436E+05   BRAKE HP = -0.5382E+05
+      ISENTR TEMP =   92.12      CALC ISENTR EFF =  0.8500      ISENTR HP = -0.6396E+05  HP =  -7007.    
+
+      UOS BLOCK $MWH01   MODEL: HEATER                                            TIME =      0.60
+      KODE = 3  NTRIAL =   1  T = 100.7257  P =  614000.      V = 0.900000      Q =-4.606352E+06
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      0.60
+      ITER   0 For Specs:        XN2
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      0.60
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    1     0.20031E-04
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      0.61
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      0.61
+      KODE = 1  NTRIAL =   8  T =  89.8833  P =  300000.      V = 0.101120      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      0.61
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      0.61
+      KODE = 1  NTRIAL =   9  T =  91.8062  P =  303040.      V = 9.879918E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      0.61
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      0.61
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      0.61
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    1     0.87894E-03
+      KODE = 1  NTRIAL =   8  T =  89.5314  P =  300080.      V = 0.606752      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      0.61
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR = -0.19332E-01                          X =   1.4165    
+
+  LOOP $OLVER04 ITER    1:     *** CONVERGED *** , MAX ERR/TOL    -0.64441        TIME =      0.65
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      0.65
+      ITER   1 For Specs:        XN2
+      SPEC   1 ERROR = -0.69844E-01 OLD X =  0.50000     NEW X =  0.54900    
+
+  LOOP $OLVER03 ITER    1:   1 VARS NOT CONVERGED, MAX ERR/TOL     -6984.4        TIME =      0.65
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      0.65
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    3     0.43091    
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      0.65
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      0.65
+      KODE = 1  NTRIAL =   8  T =  89.9498  P =  300000.      V = 0.101027      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      0.65
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      0.65
+      KODE = 1  NTRIAL =   9  T =  91.8062  P =  303040.      V = 9.879921E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      0.65
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      0.65
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      0.65
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    7      4.4246    
+          2    1    3     0.88601E-01
+      KODE = 1  NTRIAL =   8  T =  89.5540  P =  300080.      V = 0.626511      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      0.65
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR = -0.43291E-01 OLD X =   1.4165     NEW X =   1.2940    
+
+  LOOP $OLVER04 ITER    1:   1 VARS NOT CONVERGED, MAX ERR/TOL     -1.4430        TIME =      0.66
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      0.66
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    7      4.7584    
+          2    1    4     0.11745    
+      KODE = 1  NTRIAL =   8  T =  89.5545  P =  300080.      V = 0.618271      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      0.66
+      ITER   2 For Specs:        XN2REST
+      SPEC   1 ERROR =  0.13935E-02                          X =   1.2940    
+
+  LOOP $OLVER04 ITER    2:     *** CONVERGED *** , MAX ERR/TOL     0.46450E-01    TIME =      0.66
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      0.66
+      ITER   2 For Specs:        XN2
+      SPEC   1 ERROR = -0.69011E-01 OLD X =  0.54900     NEW X =  0.99000    
+
+  LOOP $OLVER03 ITER    2:   1 VARS NOT CONVERGED, MAX ERR/TOL     -6901.1        TIME =      0.66
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      0.66
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    4      4.9285    
+          2    1    2     0.58051    
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      0.70
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      0.70
+      KODE = 1  NTRIAL =   8  T =  90.7772  P =  300000.      V = 0.100003      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      0.70
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      0.70
+      KODE = 1  NTRIAL =   9  T =  91.8062  P =  303040.      V = 9.879919E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      0.70
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      0.70
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      0.70
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1   10      184.54    
+          2    1    4      17.615    
+          3    1    4      1.6482    
+          4    1    3     0.14324    
+      KODE = 1  NTRIAL =   7  T =  91.4801  P =  300080.      V = 0.984269      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      0.71
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR = -0.17196     OLD X =   1.2940     NEW X =  0.74884    
+
+  LOOP $OLVER04 ITER    1:   1 VARS NOT CONVERGED, MAX ERR/TOL     -5.7321        TIME =      0.71
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      0.71
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1   10      32.502    
+          2    1    5      11.998    
+          3    1    4     0.60629    
+      KODE = 1  NTRIAL =   6  T =  88.9973  P =  300080.      V = 0.980708      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      0.72
+      ITER   2 For Specs:        XN2REST
+      SPEC   1 ERROR = -0.49903E-01 OLD X =  0.74884     NEW X =  0.52595    
+
+  LOOP $OLVER04 ITER    2:   1 VARS NOT CONVERGED, MAX ERR/TOL     -1.6634        TIME =      0.72
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      0.72
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    6      55.973    
+          2    1    3      2.2348    
+          3    1    3     0.31026    
+      KODE = 1  NTRIAL =   5  T =  88.2643  P =  300080.      V = 0.976155      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      0.72
+      ITER   3 For Specs:        XN2REST
+      SPEC   1 ERROR =  0.11440     OLD X =  0.52595     NEW X =  0.65506    
+
+  LOOP $OLVER04 ITER    3:   1 VARS NOT CONVERGED, MAX ERR/TOL      3.8135        TIME =      0.72
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      0.72
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    8      21.605    
+          2    1    4      2.7742    
+          3    1    4     0.90871    
+      KODE = 1  NTRIAL =   5  T =  88.2627  P =  300080.      V = 0.979066      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      0.82
+      ITER   4 For Specs:        XN2REST
+      SPEC   1 ERROR =  0.67707E-02                          X =  0.65506    
+
+  LOOP $OLVER04 ITER    4:     *** CONVERGED *** , MAX ERR/TOL     0.22569        TIME =      0.82
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      0.82
+      ITER   3 For Specs:        XN2
+
+  *   WARNING WHILE EXECUTING CONVERGENCE BLOCK: "$OLVER03" (MODEL: "SECANT")   
+                                                               (MODSEC.5)       
+      EITHER SOLUTION OUTSIDE BOUNDS OR SPEC FUNCTION IS NOT MONOTONIC.         
+      REVERSING THE NESTING OF THE LOOPS BY CHANGING                            
+      DESIGN SPEC NESTING AND USER NESTING ON THE                               
+      CONV-OPTIONS.DEFAULTS.SEQUENCING SHEET MAY AID CONVERGENCE.               
+
+                    DESIGN SP/
+     VAR#  VAR NAME CALCULATOR VARIABLE DESCRIPTION                              NEW X            G(X)             X           ERR/TOL
+     ----  -------- --------   ------------------------------               --------------- --------------- --------------- ---------------
+        1  VARY     XN2     (3) KOLHP.COL-SPECS.MOLE-RDV                     0.99000000       0.0000000      0.99000000      -593.90432      *   
+
+  LOOP $OLVER03 ITER    3:   1 VARS NOT CONVERGED, MAX ERR/TOL     -593.90        TIME =      0.82
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      0.82
+      ITER   3 For Specs:        DURCH
+      SPEC   1 ERROR =   1.0517     OLD X =  0.81407     NEW X =  0.78619    
+
+  LOOP $OLVER01 ITER    3:   1 VARS NOT CONVERGED, MAX ERR/TOL      2.1034        TIME =      0.82
+
+      CALCULATOR BLOCK KOMPV                                                      TIME =      0.82
+
+      UOS BLOCK LK1      MODEL: COMPR                                             TIME =      0.82
+      OUTLET TEMP =   389.0       OUTLET PRES =  0.2505E+06   INDICATED HP =  0.2315E+07   BRAKE HP =  0.2338E+07
+      ISENTR TEMP =   373.0      CALC ISENTR EFF =  0.8400      ISENTR HP =  0.1944E+07  HP =  0.1820E+07
+
+      UOS BLOCK ZK1      MODEL: HEATER                                            TIME =      0.82
+      KODE = 2  NTRIAL =   2  T = 308.1500  P =  240496.      V =  1.00000      Q =-1.864059E+06
+
+      UOS BLOCK LK2      MODEL: COMPR                                             TIME =      0.82
+      OUTLET TEMP =   426.6       OUTLET PRES =  0.6440E+06   INDICATED HP =  0.2726E+07   BRAKE HP =  0.2753E+07
+      ISENTR TEMP =   407.9      CALC ISENTR EFF =  0.8400      ISENTR HP =  0.2290E+07  HP =  0.2143E+07
+
+      UOS BLOCK ZK2      MODEL: HEATER                                            TIME =      0.82
+      KODE = 2  NTRIAL =   1  T = 308.1500  P =  634000.      V = 0.997682      Q =-2.832230E+06
+
+      UOS BLOCK GW1      MODEL: FLASH2                                            TIME =      0.82
+      KODE = 2  NTRIAL =   1  T = 308.1500  P =  624000.      V = 0.997802      Q =  4851.81    
+
+      UOS BLOCK GW2      MODEL: SEP                                               TIME =      0.82
+      ---FLASH OUTLET STREAM S10     :
+      KODE = 2  NTRIAL =   0  T = 308.1500  P =  624000.      V =  1.00000      Q =  0.00000    
+      ---FLASH OUTLET STREAM S9      :
+      KODE = 2  NTRIAL =   1  T = 308.1500  P =  624000.      V =  0.00000      Q =  0.00000    
+      ---FLASH OUTLET STREAM S8      :
+      KODE = 2  NTRIAL =   2  T = 308.1500  P =  624000.      V =  1.00000      Q =  0.00000    
+
+      UOS BLOCK SPLIT1   MODEL: FSPLIT                                            TIME =      0.82
+      SPLIT FRACTIONS:  0.16000D+00    0.84000D+00
+
+      UOS BLOCK $MWH02   MODEL: HEATER                                            TIME =      0.82
+      KODE = 3  NTRIAL =   1  T = 101.0408  P =  614000.      V =  1.00000      Q = -781030.    
+      KODE = 2  NTRIAL =   3  T = 103.0408  P =  614000.      V =  1.00000      Q = -772512.    
+
+      CALCULATOR BLOCK PFEEDT1                                                    TIME =      0.82
+
+      UOS BLOCK T1       MODEL: COMPR                                             TIME =      0.82
+      OUTLET TEMP =   92.17       OUTLET PRES =  0.3016E+06   INDICATED HP = -0.5250E+05   BRAKE HP = -0.5198E+05
+      ISENTR TEMP =   92.12      CALC ISENTR EFF =  0.8500      ISENTR HP = -0.6177E+05  HP =  -6535.    
+
+      UOS BLOCK $MWH01   MODEL: HEATER                                            TIME =      0.82
+      KODE = 3  NTRIAL =   1  T = 100.7257  P =  614000.      V = 0.900000      Q =-4.448577E+06
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      0.82
+      ITER   0 For Specs:        XN2
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      0.82
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    2     0.91299E-02
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      0.83
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      0.89
+      KODE = 1  NTRIAL =   8  T =  90.7767  P =  300000.      V = 0.100026      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      0.89
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      0.89
+      KODE = 1  NTRIAL =   9  T =  91.8062  P =  303040.      V = 9.879918E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      0.89
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      0.89
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      0.89
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    5     0.64127E-01
+      KODE = 1  NTRIAL =   5  T =  88.2628  P =  300080.      V = 0.979060      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      0.89
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR =  0.66407E-02                          X =  0.65506    
+
+  LOOP $OLVER04 ITER    1:     *** CONVERGED *** , MAX ERR/TOL     0.22136        TIME =      0.89
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      0.89
+      ITER   1 For Specs:        XN2
+
+  *   WARNING WHILE EXECUTING CONVERGENCE BLOCK: "$OLVER03" (MODEL: "SECANT")   
+                                                               (MODSEC.5)       
+      EITHER SOLUTION OUTSIDE BOUNDS OR SPEC FUNCTION IS NOT MONOTONIC.         
+      REVERSING THE NESTING OF THE LOOPS BY CHANGING                            
+      DESIGN SPEC NESTING AND USER NESTING ON THE                               
+      CONV-OPTIONS.DEFAULTS.SEQUENCING SHEET MAY AID CONVERGENCE.               
+
+                    DESIGN SP/
+     VAR#  VAR NAME CALCULATOR VARIABLE DESCRIPTION                              NEW X            G(X)             X           ERR/TOL
+     ----  -------- --------   ------------------------------               --------------- --------------- --------------- ---------------
+        1  VARY     XN2     (3) KOLHP.COL-SPECS.MOLE-RDV                     0.99000000       0.0000000      0.99000000      -594.42027      *   
+
+  LOOP $OLVER03 ITER    1:   1 VARS NOT CONVERGED, MAX ERR/TOL     -594.42        TIME =      0.89
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      0.90
+      ITER   4 For Specs:        DURCH
+      SPEC   1 ERROR =  0.47099                              X =  0.78619    
+
+  LOOP $OLVER01 ITER    4:     *** CONVERGED *** , MAX ERR/TOL     0.94197        TIME =      0.90
+
+      UOS BLOCK D3       MODEL: VALVE                                             TIME =      0.90
+      KODE = 1  NTRIAL =   8  T =  93.1362  P =  303917.      V = 2.191508E-06  Q =  0.00000    
+      OUTLET PRES =   0.3039E+06 PRES DROP =    3.000    
+
+      UOS BLOCK SPLIT2   MODEL: FSPLIT                                            TIME =      0.90
+      SPLIT FRACTIONS:  0.10000D+01    0.00000D+00
+
+      UOS BLOCK REB      MODEL: HEATER                                            TIME =      0.90
+      KODE = 1  NTRIAL =   8  T =  95.3496  P =  293917.      V = 0.719363      Q =  0.00000    
+
+      UOS BLOCK $MWHTR   MODEL: MHEATER                                           TIME =      0.90
+      T =   305.44     Q =  0.52211E+07
+
+      CONVERGENCE BLOCK $OLVER02  METHOD: SECANT                                  TIME =      0.90
+      ITER   0 For Specs:        XN1
+      SPEC   1 ERROR = -0.14788     OLD X =  0.30000     NEW X =  0.32999    
+
+  LOOP $OLVER02 ITER    1:   1 VARS NOT CONVERGED, MAX ERR/TOL     -14788.        TIME =      0.90
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      0.90
+      ITER   0 For Specs:        DURCH
+
+      CALCULATOR BLOCK KOMPV                                                      TIME =      0.90
+
+      CALCULATOR BLOCK PFEEDT1                                                    TIME =      0.90
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      0.90
+      ITER   0 For Specs:        XN2
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      0.90
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    3     0.57739    
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      0.94
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      0.94
+      KODE = 1  NTRIAL =   8  T =  90.6855  P =  300000.      V = 0.100151      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      0.94
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      0.94
+      KODE = 1  NTRIAL =   9  T =  91.8062  P =  303040.      V = 9.879907E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      0.94
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      0.94
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      0.94
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    7      5.6938    
+          2    1    4     0.87558    
+      KODE = 1  NTRIAL =   6  T =  88.2429  P =  300080.      V = 0.979851      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      0.95
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR =  0.24335E-01                          X =  0.65506    
+
+  LOOP $OLVER04 ITER    1:     *** CONVERGED *** , MAX ERR/TOL     0.81117        TIME =      0.95
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      0.95
+      ITER   1 For Specs:        XN2
+      SPEC   1 ERROR = -0.51595E-02 OLD X =  0.99000     NEW X =  0.94100    
+
+  LOOP $OLVER03 ITER    1:   1 VARS NOT CONVERGED, MAX ERR/TOL     -515.95        TIME =      0.95
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      0.95
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    3     0.69594    
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      0.95
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      0.95
+      KODE = 1  NTRIAL =   8  T =  90.5709  P =  300000.      V = 0.100294      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      0.95
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      0.95
+      KODE = 1  NTRIAL =   9  T =  91.8062  P =  303040.      V = 9.879912E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      0.95
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      0.95
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      0.95
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    6      14.633    
+          2    1    3     0.47395    
+      KODE = 1  NTRIAL =   7  T =  88.8511  P =  300080.      V = 0.892425      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      0.95
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR =  0.74258E-01 OLD X =  0.65506     NEW X =  0.75580    
+
+  LOOP $OLVER04 ITER    1:   1 VARS NOT CONVERGED, MAX ERR/TOL      2.4753        TIME =      1.05
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      1.05
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    8      12.285    
+          2    1    4     0.95757    
+      KODE = 1  NTRIAL =   7  T =  88.8450  P =  300080.      V = 0.899783      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      1.05
+      ITER   2 For Specs:        XN2REST
+      SPEC   1 ERROR =  0.43082E-02                          X =  0.75580    
+
+  LOOP $OLVER04 ITER    2:     *** CONVERGED *** , MAX ERR/TOL     0.14361        TIME =      1.05
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      1.06
+      ITER   2 For Specs:        XN2
+
+  **  ERROR WHILE EXECUTING CONVERGENCE BLOCK: "$OLVER03" (MODEL: "SECANT")     
+                                                               (MODSEC.9)       
+      EITHER SOLUTION OUTSIDE BOUNDS OR SPEC FUNCTION IS NOT MONOTONIC.         
+      REVERSING THE NESTING OF THE LOOPS BY CHANGING                            
+      DESIGN SPEC NESTING AND USER NESTING ON THE                               
+      CONV-OPTIONS.DEFAULTS.SEQUENCING SHEET MAY AID CONVERGENCE.               
+      THE CONVERGENCE LOOP WILL BE EVALUATED ONCE MORE.                         
+      SPEC   1 ERROR = -0.25423E-01 OLD X =  0.94100     NEW X =  0.99000    
+
+  LOOP $OLVER03 ITER    2:   1 VARS NOT CONVERGED, MAX ERR/TOL     -2542.3        TIME =      1.06
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      1.06
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    3     0.70706    
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      1.06
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      1.06
+      KODE = 1  NTRIAL =   8  T =  90.6925  P =  300000.      V = 0.100106      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      1.06
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      1.06
+      KODE = 1  NTRIAL =   9  T =  91.8062  P =  303040.      V = 9.879922E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      1.06
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      1.06
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      1.06
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1   10      49.215    
+          2    1    5      28.114    
+          3    1    4     0.80155    
+      KODE = 1  NTRIAL =   5  T =  88.4961  P =  300080.      V = 0.981319      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      1.07
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR = -0.50995E-01 OLD X =  0.75580     NEW X =  0.71728    
+
+  LOOP $OLVER04 ITER    1:   1 VARS NOT CONVERGED, MAX ERR/TOL     -1.6998        TIME =      1.07
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      1.07
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1   10      27.887    
+          2    1    5      5.1368    
+          3    1    4     0.21910    
+      KODE = 1  NTRIAL =   6  T =  88.2618  P =  300080.      V = 0.980747      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      1.11
+      ITER   2 For Specs:        XN2REST
+      SPEC   1 ERROR = -0.26140E-01                          X =  0.71728    
+
+  LOOP $OLVER04 ITER    2:     *** CONVERGED *** , MAX ERR/TOL    -0.87133        TIME =      1.11
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      1.11
+      ITER   3 For Specs:        XN2
+      THE CONVERGENCE LOOP WAS EVALUATED ONCE MORE.
+
+                    DESIGN SP/
+     VAR#  VAR NAME CALCULATOR VARIABLE DESCRIPTION                              NEW X            G(X)             X           ERR/TOL
+     ----  -------- --------   ------------------------------               --------------- --------------- --------------- ---------------
+        1  VARY     XN2     (3) KOLHP.COL-SPECS.MOLE-RDV                     0.99000000       0.0000000      0.99000000      -638.02103      *   
+
+  LOOP $OLVER03 ITER    3:   1 VARS NOT CONVERGED, MAX ERR/TOL     -638.02        TIME =      1.11
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      1.11
+      ITER   1 For Specs:        DURCH
+      SPEC   1 ERROR =  0.61299     OLD X =  0.78619     NEW X =  0.76693    
+
+  LOOP $OLVER01 ITER    1:   1 VARS NOT CONVERGED, MAX ERR/TOL      1.2260        TIME =      1.11
+
+      CALCULATOR BLOCK KOMPV                                                      TIME =      1.11
+
+      UOS BLOCK LK1      MODEL: COMPR                                             TIME =      1.11
+      OUTLET TEMP =   389.0       OUTLET PRES =  0.2505E+06   INDICATED HP =  0.2258E+07   BRAKE HP =  0.2281E+07
+      ISENTR TEMP =   373.0      CALC ISENTR EFF =  0.8400      ISENTR HP =  0.1897E+07  HP =  0.1732E+07
+
+      UOS BLOCK ZK1      MODEL: HEATER                                            TIME =      1.11
+      KODE = 2  NTRIAL =   2  T = 308.1500  P =  240496.      V =  1.00000      Q =-1.818402E+06
+
+      UOS BLOCK LK2      MODEL: COMPR                                             TIME =      1.11
+      OUTLET TEMP =   426.6       OUTLET PRES =  0.6440E+06   INDICATED HP =  0.2659E+07   BRAKE HP =  0.2686E+07
+      ISENTR TEMP =   407.9      CALC ISENTR EFF =  0.8400      ISENTR HP =  0.2233E+07  HP =  0.2039E+07
+
+      UOS BLOCK ZK2      MODEL: HEATER                                            TIME =      1.11
+      KODE = 2  NTRIAL =   1  T = 308.1500  P =  634000.      V = 0.997682      Q =-2.762859E+06
+
+      UOS BLOCK GW1      MODEL: FLASH2                                            TIME =      1.11
+      KODE = 2  NTRIAL =   1  T = 308.1500  P =  624000.      V = 0.997802      Q =  4732.97    
+
+      UOS BLOCK GW2      MODEL: SEP                                               TIME =      1.11
+      ---FLASH OUTLET STREAM S10     :
+      KODE = 2  NTRIAL =   0  T = 308.1500  P =  624000.      V =  1.00000      Q =  0.00000    
+      ---FLASH OUTLET STREAM S9      :
+      KODE = 2  NTRIAL =   1  T = 308.1500  P =  624000.      V =  0.00000      Q =  0.00000    
+      ---FLASH OUTLET STREAM S8      :
+      KODE = 2  NTRIAL =   2  T = 308.1500  P =  624000.      V =  1.00000      Q =  0.00000    
+
+      UOS BLOCK SPLIT1   MODEL: FSPLIT                                            TIME =      1.11
+      SPLIT FRACTIONS:  0.16000D+00    0.84000D+00
+
+      UOS BLOCK $MWH02   MODEL: HEATER                                            TIME =      1.11
+      KODE = 3  NTRIAL =   1  T = 101.0408  P =  614000.      V =  1.00000      Q = -761900.    
+      KODE = 2  NTRIAL =   3  T = 103.0408  P =  614000.      V =  1.00000      Q = -753591.    
+
+      CALCULATOR BLOCK PFEEDT1                                                    TIME =      1.11
+
+      UOS BLOCK T1       MODEL: COMPR                                             TIME =      1.11
+      OUTLET TEMP =   92.17       OUTLET PRES =  0.3016E+06   INDICATED HP = -0.5122E+05   BRAKE HP = -0.5070E+05
+      ISENTR TEMP =   92.12      CALC ISENTR EFF =  0.8500      ISENTR HP = -0.6025E+05  HP =  -6219.    
+
+      UOS BLOCK $MWH01   MODEL: HEATER                                            TIME =      1.11
+      KODE = 3  NTRIAL =   1  T = 100.7257  P =  614000.      V = 0.900000      Q =-4.339617E+06
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      1.11
+      ITER   0 For Specs:        XN2
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      1.11
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    2     0.14106E-01
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      1.12
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      1.12
+      KODE = 1  NTRIAL =   8  T =  90.6885  P =  300000.      V = 0.100132      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      1.12
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      1.12
+      KODE = 1  NTRIAL =   9  T =  91.8062  P =  303040.      V = 9.879917E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      1.20
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      1.20
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      1.20
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    5     0.27034    
+      KODE = 1  NTRIAL =   6  T =  88.2624  P =  300080.      V = 0.980744      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      1.20
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR = -0.26519E-01                          X =  0.71728    
+
+  LOOP $OLVER04 ITER    1:     *** CONVERGED *** , MAX ERR/TOL    -0.88395        TIME =      1.20
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      1.20
+      ITER   1 For Specs:        XN2
+
+  *   WARNING WHILE EXECUTING CONVERGENCE BLOCK: "$OLVER03" (MODEL: "SECANT")   
+                                                               (MODSEC.5)       
+      EITHER SOLUTION OUTSIDE BOUNDS OR SPEC FUNCTION IS NOT MONOTONIC.         
+      REVERSING THE NESTING OF THE LOOPS BY CHANGING                            
+      DESIGN SPEC NESTING AND USER NESTING ON THE                               
+      CONV-OPTIONS.DEFAULTS.SEQUENCING SHEET MAY AID CONVERGENCE.               
+
+                    DESIGN SP/
+     VAR#  VAR NAME CALCULATOR VARIABLE DESCRIPTION                              NEW X            G(X)             X           ERR/TOL
+     ----  -------- --------   ------------------------------               --------------- --------------- --------------- ---------------
+        1  VARY     XN2     (3) KOLHP.COL-SPECS.MOLE-RDV                     0.99000000       0.0000000      0.99000000      -641.00127      *   
+
+  LOOP $OLVER03 ITER    1:   1 VARS NOT CONVERGED, MAX ERR/TOL     -641.00        TIME =      1.20
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      1.20
+      ITER   2 For Specs:        DURCH
+      SPEC   1 ERROR =  0.21202                              X =  0.76693    
+
+  LOOP $OLVER01 ITER    2:     *** CONVERGED *** , MAX ERR/TOL     0.42405        TIME =      1.20
+
+      UOS BLOCK D3       MODEL: VALVE                                             TIME =      1.20
+      KODE = 1  NTRIAL =   8  T =  93.5468  P =  303917.      V = 2.464456E-06  Q =  0.00000    
+      OUTLET PRES =   0.3039E+06 PRES DROP =    3.000    
+
+      UOS BLOCK SPLIT2   MODEL: FSPLIT                                            TIME =      1.20
+      SPLIT FRACTIONS:  0.10000D+01    0.00000D+00
+
+      UOS BLOCK REB      MODEL: HEATER                                            TIME =      1.20
+      KODE = 1  NTRIAL =   4  T =  95.7942  P =  293917.      V = 0.714139      Q =  0.00000    
+
+      UOS BLOCK $MWHTR   MODEL: MHEATER                                           TIME =      1.20
+      T =   305.44     Q =  0.50932E+07
+
+      CONVERGENCE BLOCK $OLVER02  METHOD: SECANT                                  TIME =      1.20
+      ITER   2 For Specs:        XN1
+      SPEC   1 ERROR = -0.14287     OLD X =  0.32999     NEW X =   1.1855    
+
+  LOOP $OLVER02 ITER    2:   1 VARS NOT CONVERGED, MAX ERR/TOL     -14287.        TIME =      1.20
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      1.20
+      ITER   0 For Specs:        DURCH
+
+      CALCULATOR BLOCK KOMPV                                                      TIME =      1.20
+
+      CALCULATOR BLOCK PFEEDT1                                                    TIME =      1.20
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      1.20
+      ITER   0 For Specs:        XN2
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      1.20
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1   10      171.35    
+          2    1    5      20.192    
+          3    1    4      2.7025    
+          4    1    4     0.58191    
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      1.27
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      1.27
+      KODE = 1  NTRIAL =   6  T =  88.2722  P =  300000.      V = 0.103114      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      1.27
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      1.27
+      KODE = 1  NTRIAL =   9  T =  91.8063  P =  303040.      V = 9.879914E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      1.27
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      1.27
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      1.27
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    6      45.812    
+          2    1    3      1.2187    
+          3    1    3     0.23738    
+      KODE = 1  NTRIAL =   6  T =  88.0584  P =  300080.      V = 0.991067      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      1.28
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR =  0.11878     OLD X =  0.71728     NEW X =  0.81281    
+
+  LOOP $OLVER04 ITER    1:   1 VARS NOT CONVERGED, MAX ERR/TOL      3.9595        TIME =      1.28
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      1.28
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    6      8.1911    
+          2    1    3     0.17090    
+      KODE = 1  NTRIAL =   6  T =  88.0582  P =  300080.      V = 0.991787      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      1.28
+      ITER   2 For Specs:        XN2REST
+      SPEC   1 ERROR =  0.60672E-01 OLD X =  0.81281     NEW X =  0.91255    
+
+  LOOP $OLVER04 ITER    2:   1 VARS NOT CONVERGED, MAX ERR/TOL      2.0224        TIME =      1.28
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      1.29
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    7      8.7535    
+          2    1    3     0.36819    
+      KODE = 1  NTRIAL =   6  T =  88.0584  P =  300080.      V = 0.992298      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      1.29
+      ITER   3 For Specs:        XN2REST
+      SPEC   1 ERROR = -0.17921E-02                          X =  0.91255    
+
+  LOOP $OLVER04 ITER    3:     *** CONVERGED *** , MAX ERR/TOL    -0.59736E-01    TIME =      1.29
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      1.29
+      ITER   1 For Specs:        XN2
+      SPEC   1 ERROR = -0.21676E-03 OLD X =  0.99000     NEW X =  0.94100    
+
+  LOOP $OLVER03 ITER    1:   1 VARS NOT CONVERGED, MAX ERR/TOL     -21.676        TIME =      1.29
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      1.29
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    9      1.1834    
+          2    1    4     0.18252    
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      1.39
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      1.39
+      KODE = 1  NTRIAL =   6  T =  88.2615  P =  300000.      V = 0.103132      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      1.39
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      1.39
+      KODE = 1  NTRIAL =   9  T =  91.8063  P =  303040.      V = 9.879911E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      1.39
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      1.39
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      1.39
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    6      4.3705    
+          2    1    3     0.20438    
+      KODE = 1  NTRIAL =   6  T =  88.0865  P =  300080.      V = 0.956391      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      1.39
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR =  0.20309E-01                          X =  0.91255    
+
+  LOOP $OLVER04 ITER    1:     *** CONVERGED *** , MAX ERR/TOL     0.67698        TIME =      1.39
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      1.40
+      ITER   2 For Specs:        XN2
+
+  **  ERROR WHILE EXECUTING CONVERGENCE BLOCK: "$OLVER03" (MODEL: "SECANT")     
+                                                               (MODSEC.9)       
+      EITHER SOLUTION OUTSIDE BOUNDS OR SPEC FUNCTION IS NOT MONOTONIC.         
+      REVERSING THE NESTING OF THE LOOPS BY CHANGING                            
+      DESIGN SPEC NESTING AND USER NESTING ON THE                               
+      CONV-OPTIONS.DEFAULTS.SEQUENCING SHEET MAY AID CONVERGENCE.               
+      THE CONVERGENCE LOOP WILL BE EVALUATED ONCE MORE.                         
+      SPEC   1 ERROR = -0.10793E-02 OLD X =  0.94100     NEW X =  0.99000    
+
+  LOOP $OLVER03 ITER    2:   1 VARS NOT CONVERGED, MAX ERR/TOL     -107.93        TIME =      1.40
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      1.40
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    9      1.2683    
+          2    1    4     0.18692    
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      1.40
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      1.40
+      KODE = 1  NTRIAL =   6  T =  88.2723  P =  300000.      V = 0.103114      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      1.40
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      1.40
+      KODE = 1  NTRIAL =   9  T =  91.8063  P =  303040.      V = 9.879900E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      1.40
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      1.47
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      1.47
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    6      4.2354    
+          2    1    3     0.27415    
+      KODE = 1  NTRIAL =   6  T =  88.0584  P =  300080.      V = 0.992297      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      1.48
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR = -0.17430E-02                          X =  0.91255    
+
+  LOOP $OLVER04 ITER    1:     *** CONVERGED *** , MAX ERR/TOL    -0.58099E-01    TIME =      1.48
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      1.48
+      ITER   3 For Specs:        XN2
+      THE CONVERGENCE LOOP WAS EVALUATED ONCE MORE.
+
+                    DESIGN SP/
+     VAR#  VAR NAME CALCULATOR VARIABLE DESCRIPTION                              NEW X            G(X)             X           ERR/TOL
+     ----  -------- --------   ------------------------------               --------------- --------------- --------------- ---------------
+        1  VARY     XN2     (3) KOLHP.COL-SPECS.MOLE-RDV                     0.99000000       0.0000000      0.99000000      -21.683695      *   
+
+  LOOP $OLVER03 ITER    3:   1 VARS NOT CONVERGED, MAX ERR/TOL     -21.684        TIME =      1.48
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      1.48
+      ITER   1 For Specs:        DURCH
+      SPEC   1 ERROR =  -3.4467     OLD X =  0.76693     NEW X =  0.98599    
+
+  LOOP $OLVER01 ITER    1:   1 VARS NOT CONVERGED, MAX ERR/TOL     -6.8934        TIME =      1.48
+
+      CALCULATOR BLOCK KOMPV                                                      TIME =      1.48
+
+      UOS BLOCK LK1      MODEL: COMPR                                             TIME =      1.48
+      OUTLET TEMP =   389.0       OUTLET PRES =  0.2505E+06   INDICATED HP =  0.2903E+07   BRAKE HP =  0.2932E+07
+      ISENTR TEMP =   373.0      CALC ISENTR EFF =  0.8400      ISENTR HP =  0.2438E+07  HP =  0.2862E+07
+
+      UOS BLOCK ZK1      MODEL: HEATER                                            TIME =      1.48
+      KODE = 2  NTRIAL =   2  T = 308.1500  P =  240496.      V =  1.00000      Q =-2.337779E+06
+
+      UOS BLOCK LK2      MODEL: COMPR                                             TIME =      1.48
+      OUTLET TEMP =   426.6       OUTLET PRES =  0.6440E+06   INDICATED HP =  0.3418E+07   BRAKE HP =  0.3453E+07
+      ISENTR TEMP =   407.9      CALC ISENTR EFF =  0.8400      ISENTR HP =  0.2871E+07  HP =  0.3370E+07
+
+      UOS BLOCK ZK2      MODEL: HEATER                                            TIME =      1.48
+      KODE = 2  NTRIAL =   1  T = 308.1500  P =  634000.      V = 0.997682      Q =-3.551995E+06
+
+      UOS BLOCK GW1      MODEL: FLASH2                                            TIME =      1.48
+      KODE = 2  NTRIAL =   1  T = 308.1500  P =  624000.      V = 0.997802      Q =  6084.82    
+
+      UOS BLOCK GW2      MODEL: SEP                                               TIME =      1.48
+      ---FLASH OUTLET STREAM S10     :
+      KODE = 2  NTRIAL =   0  T = 308.1500  P =  624000.      V =  1.00000      Q =  0.00000    
+      ---FLASH OUTLET STREAM S9      :
+      KODE = 2  NTRIAL =   1  T = 308.1500  P =  624000.      V =  0.00000      Q =  0.00000    
+      ---FLASH OUTLET STREAM S8      :
+      KODE = 2  NTRIAL =   2  T = 308.1500  P =  624000.      V =  1.00000      Q =  0.00000    
+
+      UOS BLOCK SPLIT1   MODEL: FSPLIT                                            TIME =      1.48
+      SPLIT FRACTIONS:  0.16000D+00    0.84000D+00
+
+      UOS BLOCK $MWH02   MODEL: HEATER                                            TIME =      1.48
+      KODE = 3  NTRIAL =   1  T = 101.0408  P =  614000.      V =  1.00000      Q = -979516.    
+      KODE = 2  NTRIAL =   3  T = 103.0408  P =  614000.      V =  1.00000      Q = -968834.    
+
+      CALCULATOR BLOCK PFEEDT1                                                    TIME =      1.48
+
+      UOS BLOCK T1       MODEL: COMPR                                             TIME =      1.48
+      OUTLET TEMP =   92.17       OUTLET PRES =  0.3016E+06   INDICATED HP = -0.6584E+05   BRAKE HP = -0.6519E+05
+      ISENTR TEMP =   92.12      CALC ISENTR EFF =  0.8500      ISENTR HP = -0.7746E+05  HP = -0.1028E+05
+
+      UOS BLOCK $MWH01   MODEL: HEATER                                            TIME =      1.48
+      KODE = 3  NTRIAL =   1  T = 100.7257  P =  614000.      V = 0.900000      Q =-5.579111E+06
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      1.48
+      ITER   0 For Specs:        XN2
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      1.48
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    4     0.19548E-01
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      1.48
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      1.48
+      KODE = 1  NTRIAL =   6  T =  88.2722  P =  300000.      V = 0.103114      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      1.53
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      1.53
+      KODE = 1  NTRIAL =   9  T =  91.8063  P =  303040.      V = 9.879904E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      1.53
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      1.53
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      1.53
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    2     0.16668E-02
+      KODE = 1  NTRIAL =   6  T =  88.0584  P =  300080.      V = 0.992297      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      1.53
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR = -0.17392E-02                          X =  0.91255    
+
+  LOOP $OLVER04 ITER    1:     *** CONVERGED *** , MAX ERR/TOL    -0.57974E-01    TIME =      1.53
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      1.53
+      ITER   1 For Specs:        XN2
+
+  *   WARNING WHILE EXECUTING CONVERGENCE BLOCK: "$OLVER03" (MODEL: "SECANT")   
+                                                               (MODSEC.5)       
+      EITHER SOLUTION OUTSIDE BOUNDS OR SPEC FUNCTION IS NOT MONOTONIC.         
+      REVERSING THE NESTING OF THE LOOPS BY CHANGING                            
+      DESIGN SPEC NESTING AND USER NESTING ON THE                               
+      CONV-OPTIONS.DEFAULTS.SEQUENCING SHEET MAY AID CONVERGENCE.               
+
+                    DESIGN SP/
+     VAR#  VAR NAME CALCULATOR VARIABLE DESCRIPTION                              NEW X            G(X)             X           ERR/TOL
+     ----  -------- --------   ------------------------------               --------------- --------------- --------------- ---------------
+        1  VARY     XN2     (3) KOLHP.COL-SPECS.MOLE-RDV                     0.99000000       0.0000000      0.99000000      -21.678708      *   
+
+  LOOP $OLVER03 ITER    1:   1 VARS NOT CONVERGED, MAX ERR/TOL     -21.679        TIME =      1.53
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      1.53
+      ITER   2 For Specs:        DURCH
+      SPEC   1 ERROR =  0.13869                              X =  0.98599    
+
+  LOOP $OLVER01 ITER    2:     *** CONVERGED *** , MAX ERR/TOL     0.27737        TIME =      1.53
+
+      UOS BLOCK D3       MODEL: VALVE                                             TIME =      1.53
+      KODE = 1  NTRIAL =   8  T =  93.2386  P =  303917.      V = 2.098149E-06  Q =  0.00000    
+      OUTLET PRES =   0.3039E+06 PRES DROP =    3.000    
+
+      UOS BLOCK SPLIT2   MODEL: FSPLIT                                            TIME =      1.53
+      SPLIT FRACTIONS:  0.10000D+01    0.00000D+00
+
+      UOS BLOCK REB      MODEL: HEATER                                            TIME =      1.53
+      KODE = 1  NTRIAL =   4  T =  95.8967  P =  293917.      V = 0.838508      Q =  0.00000    
+
+      UOS BLOCK $MWHTR   MODEL: MHEATER                                           TIME =      1.54
+      T =   305.26     Q =  0.65479E+07
+
+      CONVERGENCE BLOCK $OLVER02  METHOD: SECANT                                  TIME =      1.54
+      ITER   3 For Specs:        XN1
+      SPEC   1 ERROR = -0.12745E-01 OLD X =   1.1855     NEW X =   1.2791    
+
+  LOOP $OLVER02 ITER    3:   1 VARS NOT CONVERGED, MAX ERR/TOL     -1274.5        TIME =      1.54
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      1.54
+      ITER   0 For Specs:        DURCH
+
+      CALCULATOR BLOCK KOMPV                                                      TIME =      1.54
+
+      CALCULATOR BLOCK PFEEDT1                                                    TIME =      1.54
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      1.54
+      ITER   0 For Specs:        XN2
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      1.54
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    9      52.699    
+          2    1    3      2.8580    
+          3    1    5      1.7958    
+          4    1    3     0.83980    
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      1.59
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      1.59
+      KODE = 1  NTRIAL =   7  T =  88.0815  P =  300000.      V = 0.103405      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      1.59
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      1.59
+      KODE = 1  NTRIAL =   9  T =  91.7786  P =  303040.      V = 9.881642E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      1.59
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      1.59
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      1.59
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    5      1.5134    
+          2    1    3     0.94093E-01
+      KODE = 1  NTRIAL =   6  T =  88.0521  P =  300080.      V = 0.992744      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      1.59
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR =  0.64134E-02                          X =  0.91255    
+
+  LOOP $OLVER04 ITER    1:     *** CONVERGED *** , MAX ERR/TOL     0.21378        TIME =      1.59
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      1.59
+      ITER   1 For Specs:        XN2
+      SPEC   1 ERROR = -0.45531E-04 OLD X =  0.99000     NEW X =  0.94100    
+
+  LOOP $OLVER03 ITER    1:   1 VARS NOT CONVERGED, MAX ERR/TOL     -4.5531        TIME =      1.60
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      1.60
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    3     0.57528E-01
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      1.60
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      1.60
+      KODE = 1  NTRIAL =   7  T =  88.0802  P =  300000.      V = 0.103409      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      1.60
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      1.60
+      KODE = 1  NTRIAL =   9  T =  91.7787  P =  303040.      V = 9.881648E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      1.60
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      1.60
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      1.60
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    6      4.0323    
+          2    1    3     0.17230    
+      KODE = 1  NTRIAL =   6  T =  88.0558  P =  300080.      V = 0.958794      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      1.67
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR =  0.27106E-01                          X =  0.91255    
+
+  LOOP $OLVER04 ITER    1:     *** CONVERGED *** , MAX ERR/TOL     0.90353        TIME =      1.67
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      1.69
+      ITER   2 For Specs:        XN2
+
+  **  ERROR WHILE EXECUTING CONVERGENCE BLOCK: "$OLVER03" (MODEL: "SECANT")     
+                                                               (MODSEC.9)       
+      EITHER SOLUTION OUTSIDE BOUNDS OR SPEC FUNCTION IS NOT MONOTONIC.         
+      REVERSING THE NESTING OF THE LOOPS BY CHANGING                            
+      DESIGN SPEC NESTING AND USER NESTING ON THE                               
+      CONV-OPTIONS.DEFAULTS.SEQUENCING SHEET MAY AID CONVERGENCE.               
+      THE CONVERGENCE LOOP WILL BE EVALUATED ONCE MORE.                         
+      SPEC   1 ERROR = -0.22298E-03 OLD X =  0.94100     NEW X =  0.99000    
+
+  LOOP $OLVER03 ITER    2:   1 VARS NOT CONVERGED, MAX ERR/TOL     -22.298        TIME =      1.69
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      1.69
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    5     0.11442    
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      1.69
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      1.69
+      KODE = 1  NTRIAL =   7  T =  88.0815  P =  300000.      V = 0.103405      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      1.69
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      1.69
+      KODE = 1  NTRIAL =   9  T =  91.7786  P =  303040.      V = 9.881640E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      1.69
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      1.69
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      1.69
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    6      3.9302    
+          2    1    3     0.22627    
+      KODE = 1  NTRIAL =   6  T =  88.0521  P =  300080.      V = 0.992744      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      1.69
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR =  0.64122E-02                          X =  0.91255    
+
+  LOOP $OLVER04 ITER    1:     *** CONVERGED *** , MAX ERR/TOL     0.21374        TIME =      1.69
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      1.70
+      ITER   3 For Specs:        XN2
+      THE CONVERGENCE LOOP WAS EVALUATED ONCE MORE.
+
+                    DESIGN SP/
+     VAR#  VAR NAME CALCULATOR VARIABLE DESCRIPTION                              NEW X            G(X)             X           ERR/TOL
+     ----  -------- --------   ------------------------------               --------------- --------------- --------------- ---------------
+        1  VARY     XN2     (3) KOLHP.COL-SPECS.MOLE-RDV                     0.99000000       0.0000000      0.99000000      -4.5558486      *   
+
+  LOOP $OLVER03 ITER    3:   1 VARS NOT CONVERGED, MAX ERR/TOL     -4.5558        TIME =      1.70
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      1.70
+      ITER   1 For Specs:        DURCH
+      SPEC   1 ERROR = -0.25885                              X =  0.98599    
+
+  LOOP $OLVER01 ITER    1:     *** CONVERGED *** , MAX ERR/TOL    -0.51769        TIME =      1.70
+
+      UOS BLOCK D3       MODEL: VALVE                                             TIME =      1.70
+      KODE = 1  NTRIAL =   8  T =  93.1372  P =  303917.      V = 3.192611E-06  Q =  0.00000    
+      OUTLET PRES =   0.3039E+06 PRES DROP =    3.000    
+
+      UOS BLOCK SPLIT2   MODEL: FSPLIT                                            TIME =      1.70
+      SPLIT FRACTIONS:  0.10000D+01    0.00000D+00
+
+      UOS BLOCK REB      MODEL: HEATER                                            TIME =      1.71
+      KODE = 1  NTRIAL =   3  T =  95.8017  P =  293917.      V = 0.844218      Q =  0.00000    
+
+      UOS BLOCK $MWHTR   MODEL: MHEATER                                           TIME =      1.71
+      T =   305.26     Q =  0.65479E+07
+
+      CONVERGENCE BLOCK $OLVER02  METHOD: SECANT                                  TIME =      1.71
+      ITER   4 For Specs:        XN1
+      SPEC   1 ERROR = -0.25763E-02 OLD X =   1.2791     NEW X =   1.3040    
+
+  LOOP $OLVER02 ITER    4:   1 VARS NOT CONVERGED, MAX ERR/TOL     -257.63        TIME =      1.71
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      1.71
+      ITER   0 For Specs:        DURCH
+
+      CALCULATOR BLOCK PFEEDT1                                                    TIME =      1.71
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      1.71
+      ITER   0 For Specs:        XN2
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      1.71
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    7      11.397    
+          2    1    3      3.4235    
+          3    1    3     0.14944    
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      1.72
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      1.72
+      KODE = 1  NTRIAL =   7  T =  88.0681  P =  300000.      V = 0.103455      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      1.72
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      1.72
+      KODE = 1  NTRIAL =   9  T =  91.7542  P =  303040.      V = 9.883438E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      1.72
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      1.72
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      1.72
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    4     0.63909    
+      KODE = 1  NTRIAL =   6  T =  88.0517  P =  300080.      V = 0.992854      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      1.72
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR =  0.10127E-01                          X =  0.91255    
+
+  LOOP $OLVER04 ITER    1:     *** CONVERGED *** , MAX ERR/TOL     0.33758        TIME =      1.72
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      1.72
+      ITER   1 For Specs:        XN2
+
+  *   WARNING WHILE EXECUTING CONVERGENCE BLOCK: "$OLVER03" (MODEL: "SECANT")   
+                                                               (MODSEC.5)       
+      EITHER SOLUTION OUTSIDE BOUNDS OR SPEC FUNCTION IS NOT MONOTONIC.         
+      REVERSING THE NESTING OF THE LOOPS BY CHANGING                            
+      DESIGN SPEC NESTING AND USER NESTING ON THE                               
+      CONV-OPTIONS.DEFAULTS.SEQUENCING SHEET MAY AID CONVERGENCE.               
+
+                    DESIGN SP/
+     VAR#  VAR NAME CALCULATOR VARIABLE DESCRIPTION                              NEW X            G(X)             X           ERR/TOL
+     ----  -------- --------   ------------------------------               --------------- --------------- --------------- ---------------
+        1  VARY     XN2     (3) KOLHP.COL-SPECS.MOLE-RDV                     0.99000000       0.0000000      0.99000000      -2.6622173      *   
+
+  LOOP $OLVER03 ITER    1:   1 VARS NOT CONVERGED, MAX ERR/TOL     -2.6622        TIME =      1.72
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      1.84
+      ITER   1 For Specs:        DURCH
+      SPEC   1 ERROR = -0.36754                              X =  0.98599    
+
+  LOOP $OLVER01 ITER    1:     *** CONVERGED *** , MAX ERR/TOL    -0.73508        TIME =      1.84
+
+      UOS BLOCK D3       MODEL: VALVE                                             TIME =      1.84
+      KODE = 1  NTRIAL =   8  T =  93.0907  P =  303917.      V =  0.00000      Q =  0.00000    
+      OUTLET PRES =   0.3039E+06 PRES DROP =    3.000    
+
+      UOS BLOCK SPLIT2   MODEL: FSPLIT                                            TIME =      1.84
+      SPLIT FRACTIONS:  0.10000D+01    0.00000D+00
+
+      UOS BLOCK REB      MODEL: HEATER                                            TIME =      1.84
+      KODE = 1  NTRIAL =   3  T =  95.7529  P =  293917.      V = 0.845701      Q =  0.00000    
+
+      UOS BLOCK $MWHTR   MODEL: MHEATER                                           TIME =      1.84
+      T =   305.26     Q =  0.65479E+07
+
+      CONVERGENCE BLOCK $OLVER02  METHOD: SECANT                                  TIME =      1.84
+      ITER   5 For Specs:        XN1
+      SPEC   1 ERROR = -0.15444E-02 OLD X =   1.3040     NEW X =   1.3204    
+
+  LOOP $OLVER02 ITER    5:   1 VARS NOT CONVERGED, MAX ERR/TOL     -154.44        TIME =      1.84
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      1.84
+      ITER   0 For Specs:        DURCH
+
+      CALCULATOR BLOCK PFEEDT1                                                    TIME =      1.85
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      1.85
+      ITER   0 For Specs:        XN2
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      1.85
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    6      5.1123    
+          2    1    4      1.7868    
+          3    1    3     0.10688    
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      1.85
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      1.85
+      KODE = 1  NTRIAL =   7  T =  88.0615  P =  300000.      V = 0.103479      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      1.85
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      1.85
+      KODE = 1  NTRIAL =   9  T =  91.7374  P =  303040.      V = 9.884913E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      1.85
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      1.85
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      1.85
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    4     0.44391    
+      KODE = 1  NTRIAL =   6  T =  88.0515  P =  300080.      V = 0.992925      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      1.85
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR =  0.12640E-01                          X =  0.91255    
+
+  LOOP $OLVER04 ITER    1:     *** CONVERGED *** , MAX ERR/TOL     0.42133        TIME =      1.85
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      1.85
+      ITER   1 For Specs:        XN2
+      SPEC   1 ERROR = -0.17455E-04 OLD X =  0.99000     NEW X =  0.94100    
+
+  LOOP $OLVER03 ITER    1:   1 VARS NOT CONVERGED, MAX ERR/TOL     -1.7455        TIME =      1.85
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      1.91
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    2     0.18944E-01
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      1.91
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      1.91
+      KODE = 1  NTRIAL =   7  T =  88.0610  P =  300000.      V = 0.103481      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      1.91
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      1.91
+      KODE = 1  NTRIAL =   9  T =  91.7374  P =  303040.      V = 9.884916E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      1.92
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      1.92
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      1.92
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    6      3.8521    
+          2    1    3     0.15874    
+      KODE = 1  NTRIAL =   6  T =  88.0529  P =  300080.      V = 0.959780      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      1.92
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR =  0.32492E-01 OLD X =  0.91255     NEW X =  0.96596    
+
+  LOOP $OLVER04 ITER    1:   1 VARS NOT CONVERGED, MAX ERR/TOL      1.0831        TIME =      1.92
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      1.92
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    6      4.1954    
+          2    1    3     0.17830    
+      KODE = 1  NTRIAL =   6  T =  88.0530  P =  300080.      V = 0.960902      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      1.92
+      ITER   2 For Specs:        XN2REST
+      SPEC   1 ERROR =  0.78461E-03                          X =  0.96596    
+
+  LOOP $OLVER04 ITER    2:     *** CONVERGED *** , MAX ERR/TOL     0.26154E-01    TIME =      1.92
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      1.92
+      ITER   2 For Specs:        XN2
+
+  **  ERROR WHILE EXECUTING CONVERGENCE BLOCK: "$OLVER03" (MODEL: "SECANT")     
+                                                               (MODSEC.9)       
+      EITHER SOLUTION OUTSIDE BOUNDS OR SPEC FUNCTION IS NOT MONOTONIC.         
+      REVERSING THE NESTING OF THE LOOPS BY CHANGING                            
+      DESIGN SPEC NESTING AND USER NESTING ON THE                               
+      CONV-OPTIONS.DEFAULTS.SEQUENCING SHEET MAY AID CONVERGENCE.               
+      THE CONVERGENCE LOOP WILL BE EVALUATED ONCE MORE.                         
+      SPEC   1 ERROR = -0.95092E-04 OLD X =  0.94100     NEW X =  0.99000    
+
+  LOOP $OLVER03 ITER    2:   1 VARS NOT CONVERGED, MAX ERR/TOL     -9.5092        TIME =      1.92
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      1.93
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    2     0.16932E-01
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      1.97
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      1.97
+      KODE = 1  NTRIAL =   7  T =  88.0616  P =  300000.      V = 0.103479      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      1.97
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      1.97
+      KODE = 1  NTRIAL =   9  T =  91.7374  P =  303040.      V = 9.884910E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      1.97
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      1.97
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      1.97
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    6      4.0926    
+          2    1    3     0.43033    
+      KODE = 1  NTRIAL =   6  T =  88.0521  P =  300080.      V = 0.993123      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      1.98
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR = -0.20577E-01                          X =  0.96596    
+
+  LOOP $OLVER04 ITER    1:     *** CONVERGED *** , MAX ERR/TOL    -0.68589        TIME =      1.98
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      1.98
+      ITER   3 For Specs:        XN2
+      THE CONVERGENCE LOOP WAS EVALUATED ONCE MORE.
+
+                    DESIGN SP/
+     VAR#  VAR NAME CALCULATOR VARIABLE DESCRIPTION                              NEW X            G(X)             X           ERR/TOL
+     ----  -------- --------   ------------------------------               --------------- --------------- --------------- ---------------
+        1  VARY     XN2     (3) KOLHP.COL-SPECS.MOLE-RDV                     0.99000000       0.0000000      0.99000000      -4.4666584      *   
+
+  LOOP $OLVER03 ITER    3:   1 VARS NOT CONVERGED, MAX ERR/TOL     -4.4667        TIME =      1.98
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      1.98
+      ITER   1 For Specs:        DURCH
+      SPEC   1 ERROR =  0.28666                              X =  0.98599    
+
+  LOOP $OLVER01 ITER    1:     *** CONVERGED *** , MAX ERR/TOL     0.57332        TIME =      1.98
+
+      UOS BLOCK D3       MODEL: VALVE                                             TIME =      1.98
+      KODE = 1  NTRIAL =   8  T =  93.4667  P =  303917.      V = 3.651396E-06  Q =  0.00000    
+      OUTLET PRES =   0.3039E+06 PRES DROP =    3.000    
+
+      UOS BLOCK SPLIT2   MODEL: FSPLIT                                            TIME =      1.98
+      SPLIT FRACTIONS:  0.10000D+01    0.00000D+00
+
+      UOS BLOCK REB      MODEL: HEATER                                            TIME =      1.98
+      KODE = 1  NTRIAL =   4  T =  96.1339  P =  293917.      V = 0.837722      Q =  0.00000    
+
+      UOS BLOCK $MWHTR   MODEL: MHEATER                                           TIME =      1.98
+      T =   305.26     Q =  0.65479E+07
+
+      CONVERGENCE BLOCK $OLVER02  METHOD: SECANT                                  TIME =      1.98
+      ITER   6 For Specs:        XN1
+      SPEC   1 ERROR = -0.10424E-02 OLD X =   1.3204     NEW X =   1.3485    
+
+  LOOP $OLVER02 ITER    6:   1 VARS NOT CONVERGED, MAX ERR/TOL     -104.24        TIME =      1.98
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      1.98
+      ITER   0 For Specs:        DURCH
+
+      CALCULATOR BLOCK PFEEDT1                                                    TIME =      1.98
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      1.98
+      ITER   0 For Specs:        XN2
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      1.98
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    6      5.6930    
+          2    1    4      2.1643    
+          3    1    3     0.12301    
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      2.07
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      2.07
+      KODE = 1  NTRIAL =   7  T =  88.0547  P =  300000.      V = 0.103505      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      2.07
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      2.07
+      KODE = 1  NTRIAL =   9  T =  91.7071  P =  303040.      V = 9.888076E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      2.07
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      2.07
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      2.07
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    5     0.82673    
+      KODE = 1  NTRIAL =   6  T =  88.0518  P =  300080.      V = 0.993238      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      2.08
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR = -0.15762E-01                          X =  0.96596    
+
+  LOOP $OLVER04 ITER    1:     *** CONVERGED *** , MAX ERR/TOL    -0.52539        TIME =      2.08
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      2.08
+      ITER   1 For Specs:        XN2
+
+  *   WARNING WHILE EXECUTING CONVERGENCE BLOCK: "$OLVER03" (MODEL: "SECANT")   
+                                                               (MODSEC.5)       
+      EITHER SOLUTION OUTSIDE BOUNDS OR SPEC FUNCTION IS NOT MONOTONIC.         
+      REVERSING THE NESTING OF THE LOOPS BY CHANGING                            
+      DESIGN SPEC NESTING AND USER NESTING ON THE                               
+      CONV-OPTIONS.DEFAULTS.SEQUENCING SHEET MAY AID CONVERGENCE.               
+
+                    DESIGN SP/
+     VAR#  VAR NAME CALCULATOR VARIABLE DESCRIPTION                              NEW X            G(X)             X           ERR/TOL
+     ----  -------- --------   ------------------------------               --------------- --------------- --------------- ---------------
+        1  VARY     XN2     (3) KOLHP.COL-SPECS.MOLE-RDV                     0.99000000       0.0000000      0.99000000      -3.2528598      *   
+
+  LOOP $OLVER03 ITER    1:   1 VARS NOT CONVERGED, MAX ERR/TOL     -3.2529        TIME =      2.08
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      2.08
+      ITER   1 For Specs:        DURCH
+      SPEC   1 ERROR =  0.17568                              X =  0.98599    
+
+  LOOP $OLVER01 ITER    1:     *** CONVERGED *** , MAX ERR/TOL     0.35136        TIME =      2.08
+
+      UOS BLOCK D3       MODEL: VALVE                                             TIME =      2.08
+      KODE = 1  NTRIAL =   8  T =  93.4058  P =  303917.      V =  0.00000      Q =  0.00000    
+      OUTLET PRES =   0.3039E+06 PRES DROP =    3.000    
+
+      UOS BLOCK SPLIT2   MODEL: FSPLIT                                            TIME =      2.08
+      SPLIT FRACTIONS:  0.10000D+01    0.00000D+00
+
+      UOS BLOCK REB      MODEL: HEATER                                            TIME =      2.08
+      KODE = 1  NTRIAL =   3  T =  96.0736  P =  293917.      V = 0.839415      Q =  0.00000    
+
+      UOS BLOCK $MWHTR   MODEL: MHEATER                                           TIME =      2.08
+      T =   305.26     Q =  0.65479E+07
+
+      CONVERGENCE BLOCK $OLVER02  METHOD: SECANT                                  TIME =      2.08
+      ITER   7 For Specs:        XN1
+      SPEC   1 ERROR = -0.51448E-03 OLD X =   1.3485     NEW X =   1.3707    
+
+  LOOP $OLVER02 ITER    7:   1 VARS NOT CONVERGED, MAX ERR/TOL     -51.448        TIME =      2.08
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      2.08
+      ITER   0 For Specs:        DURCH
+
+      CALCULATOR BLOCK PFEEDT1                                                    TIME =      2.08
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      2.08
+      ITER   0 For Specs:        XN2
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      2.16
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    6      2.5892    
+          2    1    4      1.1978    
+          3    1    3     0.87316E-01
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      2.17
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      2.17
+      KODE = 1  NTRIAL =   7  T =  88.0520  P =  300000.      V = 0.103515      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      2.17
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      2.17
+      KODE = 1  NTRIAL =   9  T =  91.6826  P =  303040.      V = 9.890887E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      2.17
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      2.17
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      2.17
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    5     0.67896    
+      KODE = 1  NTRIAL =   6  T =  88.0517  P =  300080.      V = 0.993326      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      2.17
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR = -0.11894E-01                          X =  0.96596    
+
+  LOOP $OLVER04 ITER    1:     *** CONVERGED *** , MAX ERR/TOL    -0.39648        TIME =      2.18
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      2.18
+      ITER   1 For Specs:        XN2
+      SPEC   1 ERROR = -0.26832E-04 OLD X =  0.99000     NEW X =  0.94100    
+
+  LOOP $OLVER03 ITER    1:   1 VARS NOT CONVERGED, MAX ERR/TOL     -2.6832        TIME =      2.18
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      2.18
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    2     0.53904E-02
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      2.18
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      2.18
+      KODE = 1  NTRIAL =   7  T =  88.0519  P =  300000.      V = 0.103516      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      2.18
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      2.18
+      KODE = 1  NTRIAL =   9  T =  91.6826  P =  303040.      V = 9.890890E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      2.18
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      2.18
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      2.18
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    6      3.9883    
+          2    1    3     0.28563    
+      KODE = 1  NTRIAL =   6  T =  88.0517  P =  300080.      V = 0.962016      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      2.26
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR =  0.83823E-02                          X =  0.96596    
+
+  LOOP $OLVER04 ITER    1:     *** CONVERGED *** , MAX ERR/TOL     0.27941        TIME =      2.26
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      2.27
+      ITER   2 For Specs:        XN2
+
+  **  ERROR WHILE EXECUTING CONVERGENCE BLOCK: "$OLVER03" (MODEL: "SECANT")     
+                                                               (MODSEC.9)       
+      EITHER SOLUTION OUTSIDE BOUNDS OR SPEC FUNCTION IS NOT MONOTONIC.         
+      REVERSING THE NESTING OF THE LOOPS BY CHANGING                            
+      DESIGN SPEC NESTING AND USER NESTING ON THE                               
+      CONV-OPTIONS.DEFAULTS.SEQUENCING SHEET MAY AID CONVERGENCE.               
+      THE CONVERGENCE LOOP WILL BE EVALUATED ONCE MORE.                         
+      SPEC   1 ERROR = -0.27694E-04 OLD X =  0.94100     NEW X =  0.99000    
+
+  LOOP $OLVER03 ITER    2:   1 VARS NOT CONVERGED, MAX ERR/TOL     -2.7694        TIME =      2.27
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      2.27
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    1     0.49963E-02
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      2.27
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      2.27
+      KODE = 1  NTRIAL =   7  T =  88.0520  P =  300000.      V = 0.103515      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      2.27
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      2.27
+      KODE = 1  NTRIAL =   9  T =  91.6826  P =  303040.      V = 9.890886E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      2.27
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      2.27
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      2.27
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    6      3.8546    
+          2    1    3     0.37865    
+      KODE = 1  NTRIAL =   6  T =  88.0517  P =  300080.      V = 0.993326      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      2.27
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR = -0.11888E-01                          X =  0.96596    
+
+  LOOP $OLVER04 ITER    1:     *** CONVERGED *** , MAX ERR/TOL    -0.39628        TIME =      2.27
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      2.27
+      ITER   3 For Specs:        XN2
+      THE CONVERGENCE LOOP WAS EVALUATED ONCE MORE.
+
+                    DESIGN SP/
+     VAR#  VAR NAME CALCULATOR VARIABLE DESCRIPTION                              NEW X            G(X)             X           ERR/TOL
+     ----  -------- --------   ------------------------------               --------------- --------------- --------------- ---------------
+        1  VARY     XN2     (3) KOLHP.COL-SPECS.MOLE-RDV                     0.99000000       0.0000000      0.99000000      -2.6796066      *   
+
+  LOOP $OLVER03 ITER    3:   1 VARS NOT CONVERGED, MAX ERR/TOL     -2.6796        TIME =      2.27
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      2.27
+      ITER   1 For Specs:        DURCH
+      SPEC   1 ERROR =  0.89815E-01                          X =  0.98599    
+
+  LOOP $OLVER01 ITER    1:     *** CONVERGED *** , MAX ERR/TOL     0.17963        TIME =      2.27
+
+      UOS BLOCK D3       MODEL: VALVE                                             TIME =      2.28
+      KODE = 1  NTRIAL =   8  T =  93.3575  P =  303917.      V = 3.459305E-06  Q =  0.00000    
+      OUTLET PRES =   0.3039E+06 PRES DROP =    3.000    
+
+      UOS BLOCK SPLIT2   MODEL: FSPLIT                                            TIME =      2.31
+      SPLIT FRACTIONS:  0.10000D+01    0.00000D+00
+
+      UOS BLOCK REB      MODEL: HEATER                                            TIME =      2.31
+      KODE = 1  NTRIAL =   3  T =  96.0249  P =  293917.      V = 0.840482      Q =  0.00000    
+
+      UOS BLOCK $MWHTR   MODEL: MHEATER                                           TIME =      2.31
+      T =   305.24     Q =  0.65479E+07
+
+      CONVERGENCE BLOCK $OLVER02  METHOD: SECANT                                  TIME =      2.31
+      ITER   8 For Specs:        XN1
+      SPEC   1 ERROR = -0.30624E-03 OLD X =   1.3707     NEW X =   1.3916    
+
+  LOOP $OLVER02 ITER    8:   1 VARS NOT CONVERGED, MAX ERR/TOL     -30.624        TIME =      2.31
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      2.31
+      ITER   0 For Specs:        DURCH
+
+      CALCULATOR BLOCK PFEEDT1                                                    TIME =      2.31
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      2.31
+      ITER   0 For Specs:        XN2
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      2.31
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    5      1.5497    
+          2    1    3     0.82828    
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      2.31
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      2.31
+      KODE = 1  NTRIAL =   7  T =  88.0505  P =  300000.      V = 0.103521      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      2.31
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      2.31
+      KODE = 1  NTRIAL =   9  T =  91.6596  P =  303040.      V = 9.893626E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      2.31
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      2.31
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      2.31
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    5     0.61062    
+      KODE = 1  NTRIAL =   6  T =  88.0516  P =  300080.      V = 0.993407      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      2.31
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR = -0.82889E-02                          X =  0.96596    
+
+  LOOP $OLVER04 ITER    1:     *** CONVERGED *** , MAX ERR/TOL    -0.27630        TIME =      2.31
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      2.32
+      ITER   1 For Specs:        XN2
+
+  *   WARNING WHILE EXECUTING CONVERGENCE BLOCK: "$OLVER03" (MODEL: "SECANT")   
+                                                               (MODSEC.5)       
+      EITHER SOLUTION OUTSIDE BOUNDS OR SPEC FUNCTION IS NOT MONOTONIC.         
+      REVERSING THE NESTING OF THE LOOPS BY CHANGING                            
+      DESIGN SPEC NESTING AND USER NESTING ON THE                               
+      CONV-OPTIONS.DEFAULTS.SEQUENCING SHEET MAY AID CONVERGENCE.               
+
+                    DESIGN SP/
+     VAR#  VAR NAME CALCULATOR VARIABLE DESCRIPTION                              NEW X            G(X)             X           ERR/TOL
+     ----  -------- --------   ------------------------------               --------------- --------------- --------------- ---------------
+        1  VARY     XN2     (3) KOLHP.COL-SPECS.MOLE-RDV                     0.99000000       0.0000000      0.99000000      -2.3128699      *   
+
+  LOOP $OLVER03 ITER    1:   1 VARS NOT CONVERGED, MAX ERR/TOL     -2.3129        TIME =      2.32
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      2.41
+      ITER   1 For Specs:        DURCH
+      SPEC   1 ERROR =  0.10729E-01                          X =  0.98599    
+
+  LOOP $OLVER01 ITER    1:     *** CONVERGED *** , MAX ERR/TOL     0.21458E-01    TIME =      2.41
+
+      UOS BLOCK D3       MODEL: VALVE                                             TIME =      2.41
+      KODE = 1  NTRIAL =   8  T =  93.3129  P =  303917.      V =  0.00000      Q =  0.00000    
+      OUTLET PRES =   0.3039E+06 PRES DROP =    3.000    
+
+      UOS BLOCK SPLIT2   MODEL: FSPLIT                                            TIME =      2.41
+      SPLIT FRACTIONS:  0.10000D+01    0.00000D+00
+
+      UOS BLOCK REB      MODEL: HEATER                                            TIME =      2.41
+      KODE = 1  NTRIAL =   3  T =  95.9806  P =  293917.      V = 0.841670      Q =  0.00000    
+
+      UOS BLOCK $MWHTR   MODEL: MHEATER                                           TIME =      2.41
+      T =   305.24     Q =  0.65479E+07
+
+      CONVERGENCE BLOCK $OLVER02  METHOD: SECANT                                  TIME =      2.41
+      ITER   9 For Specs:        XN1
+      SPEC   1 ERROR = -0.19427E-03 OLD X =   1.3916     NEW X =   1.4177    
+
+  LOOP $OLVER02 ITER    9:   1 VARS NOT CONVERGED, MAX ERR/TOL     -19.427        TIME =      2.41
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      2.41
+      ITER   0 For Specs:        DURCH
+
+      CALCULATOR BLOCK PFEEDT1                                                    TIME =      2.41
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      2.41
+      ITER   0 For Specs:        XN2
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      2.41
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    5      1.3053    
+          2    1    3     0.73909    
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      2.42
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      2.42
+      KODE = 1  NTRIAL =   7  T =  88.0495  P =  300000.      V = 0.103524      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      2.42
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      2.42
+      KODE = 1  NTRIAL =   9  T =  91.6315  P =  303040.      V = 9.897050E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      2.42
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      2.42
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      2.42
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    5     0.75616    
+      KODE = 1  NTRIAL =   6  T =  88.0515  P =  300080.      V = 0.993506      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      2.42
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR = -0.38869E-02                          X =  0.96596    
+
+  LOOP $OLVER04 ITER    1:     *** CONVERGED *** , MAX ERR/TOL    -0.12956        TIME =      2.42
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      2.42
+      ITER   1 For Specs:        XN2
+      SPEC   1 ERROR = -0.19763E-04 OLD X =  0.99000     NEW X =  0.94100    
+
+  LOOP $OLVER03 ITER    1:   1 VARS NOT CONVERGED, MAX ERR/TOL     -1.9763        TIME =      2.42
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      2.42
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    2     0.30582E-02
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      2.48
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      2.48
+      KODE = 1  NTRIAL =   7  T =  88.0494  P =  300000.      V = 0.103525      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      2.48
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      2.48
+      KODE = 1  NTRIAL =   9  T =  91.6315  P =  303040.      V = 9.897057E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      2.48
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      2.48
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      2.48
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    6      3.7655    
+          2    1    3     0.25800    
+      KODE = 1  NTRIAL =   6  T =  88.0513  P =  300080.      V = 0.963003      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      2.49
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR =  0.15402E-01                          X =  0.96596    
+
+  LOOP $OLVER04 ITER    1:     *** CONVERGED *** , MAX ERR/TOL     0.51339        TIME =      2.49
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      2.49
+      ITER   2 For Specs:        XN2
+      SPEC   1 ERROR = -0.99608E-05                          X =  0.94100    
+
+  LOOP $OLVER03 ITER    2:     *** CONVERGED *** , MAX ERR/TOL    -0.99608        TIME =      2.49
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      2.49
+      ITER   1 For Specs:        DURCH
+      SPEC   1 ERROR = -0.52301     OLD X =  0.98599     NEW X =  0.98847    
+
+  LOOP $OLVER01 ITER    1:   1 VARS NOT CONVERGED, MAX ERR/TOL     -1.0460        TIME =      2.49
+
+      CALCULATOR BLOCK KOMPV                                                      TIME =      2.49
+
+      UOS BLOCK LK1      MODEL: COMPR                                             TIME =      2.49
+      OUTLET TEMP =   389.0       OUTLET PRES =  0.2505E+06   INDICATED HP =  0.2910E+07   BRAKE HP =  0.2939E+07
+      ISENTR TEMP =   373.0      CALC ISENTR EFF =  0.8400      ISENTR HP =  0.2444E+07  HP =  0.2876E+07
+
+      UOS BLOCK ZK1      MODEL: HEATER                                            TIME =      2.49
+      KODE = 2  NTRIAL =   2  T = 308.1500  P =  240496.      V =  1.00000      Q =-2.343661E+06
+
+      UOS BLOCK LK2      MODEL: COMPR                                             TIME =      2.49
+      OUTLET TEMP =   426.6       OUTLET PRES =  0.6440E+06   INDICATED HP =  0.3427E+07   BRAKE HP =  0.3462E+07
+      ISENTR TEMP =   407.9      CALC ISENTR EFF =  0.8400      ISENTR HP =  0.2879E+07  HP =  0.3387E+07
+
+      UOS BLOCK ZK2      MODEL: HEATER                                            TIME =      2.49
+      KODE = 2  NTRIAL =   1  T = 308.1500  P =  634000.      V = 0.997682      Q =-3.560932E+06
+
+      UOS BLOCK GW1      MODEL: FLASH2                                            TIME =      2.49
+      KODE = 2  NTRIAL =   1  T = 308.1500  P =  624000.      V = 0.997802      Q =  6100.13    
+
+      UOS BLOCK GW2      MODEL: SEP                                               TIME =      2.49
+      ---FLASH OUTLET STREAM S10     :
+      KODE = 2  NTRIAL =   0  T = 308.1500  P =  624000.      V =  1.00000      Q =  0.00000    
+      ---FLASH OUTLET STREAM S9      :
+      KODE = 2  NTRIAL =   1  T = 308.1500  P =  624000.      V =  0.00000      Q =  0.00000    
+      ---FLASH OUTLET STREAM S8      :
+      KODE = 2  NTRIAL =   2  T = 308.1500  P =  624000.      V =  1.00000      Q =  0.00000    
+
+      UOS BLOCK SPLIT1   MODEL: FSPLIT                                            TIME =      2.49
+      SPLIT FRACTIONS:  0.16000D+00    0.84000D+00
+
+      UOS BLOCK $MWH02   MODEL: HEATER                                            TIME =      2.49
+      KODE = 3  NTRIAL =   1  T = 101.0408  P =  614000.      V =  1.00000      Q = -981980.    
+      KODE = 2  NTRIAL =   3  T = 103.0408  P =  614000.      V =  1.00000      Q = -971272.    
+
+      CALCULATOR BLOCK PFEEDT1                                                    TIME =      2.49
+
+      UOS BLOCK T1       MODEL: COMPR                                             TIME =      2.49
+      OUTLET TEMP =   92.17       OUTLET PRES =  0.3016E+06   INDICATED HP = -0.6601E+05   BRAKE HP = -0.6535E+05
+      ISENTR TEMP =   92.12      CALC ISENTR EFF =  0.8500      ISENTR HP = -0.7766E+05  HP = -0.1033E+05
+
+      UOS BLOCK $MWH01   MODEL: HEATER                                            TIME =      2.49
+      KODE = 3  NTRIAL =   1  T = 100.7257  P =  614000.      V = 0.900000      Q =-5.593148E+06
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      2.49
+      ITER   0 For Specs:        XN2
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      2.58
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    1     0.24814E-03
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      2.58
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      2.58
+      KODE = 1  NTRIAL =   7  T =  88.0494  P =  300000.      V = 0.103525      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      2.58
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      2.58
+      KODE = 1  NTRIAL =   9  T =  91.6315  P =  303040.      V = 9.897057E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      2.58
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      2.58
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      2.58
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    2     0.17027E-02
+      KODE = 1  NTRIAL =   6  T =  88.0513  P =  300080.      V = 0.963002      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      2.59
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR =  0.15400E-01                          X =  0.96596    
+
+  LOOP $OLVER04 ITER    1:     *** CONVERGED *** , MAX ERR/TOL     0.51333        TIME =      2.59
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      2.59
+      ITER   1 For Specs:        XN2
+      SPEC   1 ERROR = -0.99627E-05                          X =  0.94100    
+
+  LOOP $OLVER03 ITER    1:     *** CONVERGED *** , MAX ERR/TOL    -0.99627        TIME =      2.59
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      2.59
+      ITER   2 For Specs:        DURCH
+      SPEC   1 ERROR = -0.48403                              X =  0.98847    
+
+  LOOP $OLVER01 ITER    2:     *** CONVERGED *** , MAX ERR/TOL    -0.96805        TIME =      2.59
+
+      UOS BLOCK D3       MODEL: VALVE                                             TIME =      2.59
+      KODE = 1  NTRIAL =   8  T =  93.0252  P =  303917.      V = 2.076655E-06  Q =  0.00000    
+      OUTLET PRES =   0.3039E+06 PRES DROP =    3.000    
+
+      UOS BLOCK SPLIT2   MODEL: FSPLIT                                            TIME =      2.59
+      SPLIT FRACTIONS:  0.10000D+01    0.00000D+00
+
+      UOS BLOCK REB      MODEL: HEATER                                            TIME =      2.59
+      KODE = 1  NTRIAL =   4  T =  95.6865  P =  293917.      V = 0.848591      Q =  0.00000    
+
+      UOS BLOCK $MWHTR   MODEL: MHEATER                                           TIME =      2.59
+      T =   305.24     Q =  0.65644E+07
+
+      CONVERGENCE BLOCK $OLVER02  METHOD: SECANT                                  TIME =      2.59
+      ITER  10 For Specs:        XN1
+      SPEC   1 ERROR = -0.11012E-03 OLD X =   1.4177     NEW X =   1.4442    
+
+  LOOP $OLVER02 ITER   10:   1 VARS NOT CONVERGED, MAX ERR/TOL     -11.012        TIME =      2.59
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      2.59
+      ITER   0 For Specs:        DURCH
+
+      CALCULATOR BLOCK KOMPV                                                      TIME =      2.59
+
+      CALCULATOR BLOCK PFEEDT1                                                    TIME =      2.59
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      2.59
+      ITER   0 For Specs:        XN2
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      2.65
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    4      1.0295    
+          2    1    3     0.54417    
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      2.65
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      2.65
+      KODE = 1  NTRIAL =   7  T =  88.0489  P =  300000.      V = 0.103527      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      2.65
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      2.65
+      KODE = 1  NTRIAL =   9  T =  91.6038  P =  303040.      V = 9.900450E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      2.65
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      2.65
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      2.65
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    4     0.61329    
+      KODE = 1  NTRIAL =   6  T =  88.0512  P =  300080.      V = 0.963536      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      2.66
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR =  0.19192E-01                          X =  0.96596    
+
+  LOOP $OLVER04 ITER    1:     *** CONVERGED *** , MAX ERR/TOL     0.63973        TIME =      2.66
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      2.66
+      ITER   1 For Specs:        XN2
+      SPEC   1 ERROR = -0.55849E-05                          X =  0.94100    
+
+  LOOP $OLVER03 ITER    1:     *** CONVERGED *** , MAX ERR/TOL    -0.55849        TIME =      2.66
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      2.66
+      ITER   1 For Specs:        DURCH
+      SPEC   1 ERROR = -0.57502     OLD X =  0.98847     NEW X =   1.0315    
+
+  LOOP $OLVER01 ITER    1:   1 VARS NOT CONVERGED, MAX ERR/TOL     -1.1500        TIME =      2.66
+
+      CALCULATOR BLOCK KOMPV                                                      TIME =      2.66
+
+      UOS BLOCK LK1      MODEL: COMPR                                             TIME =      2.66
+      OUTLET TEMP =   389.0       OUTLET PRES =  0.2505E+06   INDICATED HP =  0.3037E+07   BRAKE HP =  0.3068E+07
+      ISENTR TEMP =   373.0      CALC ISENTR EFF =  0.8400      ISENTR HP =  0.2551E+07  HP =  0.3133E+07
+
+      UOS BLOCK ZK1      MODEL: HEATER                                            TIME =      2.66
+      KODE = 2  NTRIAL =   2  T = 308.1500  P =  240496.      V =  1.00000      Q =-2.445811E+06
+
+      UOS BLOCK LK2      MODEL: COMPR                                             TIME =      2.66
+      OUTLET TEMP =   426.6       OUTLET PRES =  0.6440E+06   INDICATED HP =  0.3576E+07   BRAKE HP =  0.3612E+07
+      ISENTR TEMP =   407.9      CALC ISENTR EFF =  0.8400      ISENTR HP =  0.3004E+07  HP =  0.3689E+07
+
+      UOS BLOCK ZK2      MODEL: HEATER                                            TIME =      2.66
+      KODE = 2  NTRIAL =   1  T = 308.1500  P =  634000.      V = 0.997682      Q =-3.716137E+06
+
+      UOS BLOCK GW1      MODEL: FLASH2                                            TIME =      2.66
+      KODE = 2  NTRIAL =   1  T = 308.1500  P =  624000.      V = 0.997802      Q =  6366.01    
+
+      UOS BLOCK GW2      MODEL: SEP                                               TIME =      2.66
+      ---FLASH OUTLET STREAM S10     :
+      KODE = 2  NTRIAL =   0  T = 308.1500  P =  624000.      V =  1.00000      Q =  0.00000    
+      ---FLASH OUTLET STREAM S9      :
+      KODE = 2  NTRIAL =   1  T = 308.1500  P =  624000.      V =  0.00000      Q =  0.00000    
+      ---FLASH OUTLET STREAM S8      :
+      KODE = 2  NTRIAL =   2  T = 308.1500  P =  624000.      V =  1.00000      Q =  0.00000    
+
+      UOS BLOCK SPLIT1   MODEL: FSPLIT                                            TIME =      2.66
+      SPLIT FRACTIONS:  0.16000D+00    0.84000D+00
+
+      UOS BLOCK $MWH02   MODEL: HEATER                                            TIME =      2.66
+      KODE = 3  NTRIAL =   1  T = 101.0408  P =  614000.      V =  1.00000      Q =-1.024780E+06
+      KODE = 2  NTRIAL =   3  T = 103.0408  P =  614000.      V =  1.00000      Q =-1.013605E+06
+
+      CALCULATOR BLOCK PFEEDT1                                                    TIME =      2.66
+
+      UOS BLOCK T1       MODEL: COMPR                                             TIME =      2.66
+      OUTLET TEMP =   92.17       OUTLET PRES =  0.3016E+06   INDICATED HP = -0.6889E+05   BRAKE HP = -0.6820E+05
+      ISENTR TEMP =   92.12      CALC ISENTR EFF =  0.8500      ISENTR HP = -0.8104E+05  HP = -0.1125E+05
+
+      UOS BLOCK $MWH01   MODEL: HEATER                                            TIME =      2.74
+      KODE = 3  NTRIAL =   1  T = 100.7257  P =  614000.      V = 0.900000      Q =-5.836929E+06
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      2.74
+      ITER   0 For Specs:        XN2
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      2.74
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    1     0.18521E-02
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      2.74
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      2.74
+      KODE = 1  NTRIAL =   7  T =  88.0489  P =  300000.      V = 0.103527      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      2.74
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      2.74
+      KODE = 1  NTRIAL =   9  T =  91.6038  P =  303040.      V = 9.900456E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      2.74
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      2.74
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      2.74
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    3     0.16458E-01
+      KODE = 1  NTRIAL =   6  T =  88.0512  P =  300080.      V = 0.963535      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      2.74
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR =  0.19188E-01                          X =  0.96596    
+
+  LOOP $OLVER04 ITER    1:     *** CONVERGED *** , MAX ERR/TOL     0.63961        TIME =      2.74
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      2.74
+      ITER   1 For Specs:        XN2
+      SPEC   1 ERROR = -0.55842E-05                          X =  0.94100    
+
+  LOOP $OLVER03 ITER    1:     *** CONVERGED *** , MAX ERR/TOL    -0.55842        TIME =      2.74
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      2.74
+      ITER   2 For Specs:        DURCH
+      SPEC   1 ERROR =  0.97376E-01                          X =   1.0315    
+
+  LOOP $OLVER01 ITER    2:     *** CONVERGED *** , MAX ERR/TOL     0.19475        TIME =      2.74
+
+      UOS BLOCK D3       MODEL: VALVE                                             TIME =      2.75
+      KODE = 1  NTRIAL =   8  T =  92.9798  P =  303917.      V = 2.083385E-06  Q =  0.00000    
+      OUTLET PRES =   0.3039E+06 PRES DROP =    3.000    
+
+      UOS BLOCK SPLIT2   MODEL: FSPLIT                                            TIME =      2.75
+      SPLIT FRACTIONS:  0.10000D+01    0.00000D+00
+
+      UOS BLOCK REB      MODEL: HEATER                                            TIME =      2.75
+      KODE = 1  NTRIAL =   3  T =  95.6392  P =  293917.      V = 0.849721      Q =  0.00000    
+
+      UOS BLOCK $MWHTR   MODEL: MHEATER                                           TIME =      2.75
+      T =   305.24     Q =  0.68505E+07
+
+      CONVERGENCE BLOCK $OLVER02  METHOD: SECANT                                  TIME =      2.75
+      ITER  11 For Specs:        XN1
+      SPEC   1 ERROR = -0.65860E-04 OLD X =   1.4442     NEW X =   1.4711    
+
+  LOOP $OLVER02 ITER   11:   1 VARS NOT CONVERGED, MAX ERR/TOL     -6.5860        TIME =      2.75
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      2.75
+      ITER   0 For Specs:        DURCH
+
+      CALCULATOR BLOCK KOMPV                                                      TIME =      2.75
+
+      CALCULATOR BLOCK PFEEDT1                                                    TIME =      2.75
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      2.81
+      ITER   0 For Specs:        XN2
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      2.81
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    4     0.92563    
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      2.81
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      2.81
+      KODE = 1  NTRIAL =   7  T =  88.0485  P =  300000.      V = 0.103528      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      2.81
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      2.81
+      KODE = 1  NTRIAL =   9  T =  91.5766  P =  303040.      V = 9.903720E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      2.81
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      2.81
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      2.81
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    4     0.60412    
+      KODE = 1  NTRIAL =   6  T =  88.0511  P =  300080.      V = 0.964063      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      2.82
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR =  0.22943E-01                          X =  0.96596    
+
+  LOOP $OLVER04 ITER    1:     *** CONVERGED *** , MAX ERR/TOL     0.76475        TIME =      2.82
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      2.82
+      ITER   1 For Specs:        XN2
+      SPEC   1 ERROR = -0.29238E-05                          X =  0.94100    
+
+  LOOP $OLVER03 ITER    1:     *** CONVERGED *** , MAX ERR/TOL    -0.29238        TIME =      2.82
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      2.82
+      ITER   1 For Specs:        DURCH
+      SPEC   1 ERROR =  0.23723E-02                          X =   1.0315    
+
+  LOOP $OLVER01 ITER    1:     *** CONVERGED *** , MAX ERR/TOL     0.47446E-02    TIME =      2.82
+
+      UOS BLOCK D3       MODEL: VALVE                                             TIME =      2.82
+      KODE = 1  NTRIAL =   8  T =  92.9351  P =  303917.      V =  0.00000      Q =  0.00000    
+      OUTLET PRES =   0.3039E+06 PRES DROP =    3.000    
+
+      UOS BLOCK SPLIT2   MODEL: FSPLIT                                            TIME =      2.82
+      SPLIT FRACTIONS:  0.10000D+01    0.00000D+00
+
+      UOS BLOCK REB      MODEL: HEATER                                            TIME =      2.82
+      KODE = 1  NTRIAL =   3  T =  95.5926  P =  293917.      V = 0.850937      Q =  0.00000    
+
+      UOS BLOCK $MWHTR   MODEL: MHEATER                                           TIME =      2.82
+      T =   305.24     Q =  0.68505E+07
+
+      CONVERGENCE BLOCK $OLVER02  METHOD: SECANT                                  TIME =      2.82
+      ITER  12 For Specs:        XN1
+      SPEC   1 ERROR = -0.40310E-04 OLD X =   1.4711     NEW X =   1.5020    
+
+  LOOP $OLVER02 ITER   12:   1 VARS NOT CONVERGED, MAX ERR/TOL     -4.0310        TIME =      2.82
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      2.82
+      ITER   0 For Specs:        DURCH
+
+      CALCULATOR BLOCK PFEEDT1                                                    TIME =      2.82
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      2.82
+      ITER   0 For Specs:        XN2
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      2.82
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    4      1.0168    
+          2    1    2     0.37820    
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      2.88
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      2.88
+      KODE = 1  NTRIAL =   7  T =  88.0483  P =  300000.      V = 0.103529      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      2.88
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      2.88
+      KODE = 1  NTRIAL =   9  T =  91.5465  P =  303040.      V = 9.907553E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      2.89
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      2.89
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      2.89
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    4     0.67111    
+      KODE = 1  NTRIAL =   6  T =  88.0511  P =  300080.      V = 0.964649      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      2.89
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR =  0.27050E-01                          X =  0.96596    
+
+  LOOP $OLVER04 ITER    1:     *** CONVERGED *** , MAX ERR/TOL     0.90166        TIME =      2.89
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      2.89
+      ITER   1 For Specs:        XN2
+      SPEC   1 ERROR = -0.82322E-06                          X =  0.94100    
+
+  LOOP $OLVER03 ITER    1:     *** CONVERGED *** , MAX ERR/TOL    -0.82322E-01    TIME =      2.89
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      2.89
+      ITER   1 For Specs:        DURCH
+      SPEC   1 ERROR = -0.10301                              X =   1.0315    
+
+  LOOP $OLVER01 ITER    1:     *** CONVERGED *** , MAX ERR/TOL    -0.20602        TIME =      2.89
+
+      UOS BLOCK D3       MODEL: VALVE                                             TIME =      2.89
+      KODE = 1  NTRIAL =   8  T =  92.8865  P =  303917.      V =  0.00000      Q =  0.00000    
+      OUTLET PRES =   0.3039E+06 PRES DROP =    3.000    
+
+      UOS BLOCK SPLIT2   MODEL: FSPLIT                                            TIME =      2.89
+      SPLIT FRACTIONS:  0.10000D+01    0.00000D+00
+
+      UOS BLOCK REB      MODEL: HEATER                                            TIME =      2.89
+      KODE = 1  NTRIAL =   3  T =  95.5411  P =  293917.      V = 0.852136      Q =  0.00000    
+
+      UOS BLOCK $MWHTR   MODEL: MHEATER                                           TIME =      2.89
+      T =   305.24     Q =  0.68505E+07
+
+      CONVERGENCE BLOCK $OLVER02  METHOD: SECANT                                  TIME =      2.89
+      ITER  13 For Specs:        XN1
+      SPEC   1 ERROR = -0.20804E-04 OLD X =   1.5020     NEW X =   1.5286    
+
+  LOOP $OLVER02 ITER   13:   1 VARS NOT CONVERGED, MAX ERR/TOL     -2.0804        TIME =      2.89
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      2.89
+      ITER   0 For Specs:        DURCH
+
+      CALCULATOR BLOCK PFEEDT1                                                    TIME =      2.89
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      2.89
+      ITER   0 For Specs:        XN2
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      2.89
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    4     0.79221    
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      2.97
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      2.97
+      KODE = 1  NTRIAL =   7  T =  88.0482  P =  300000.      V = 0.103529      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      2.97
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      2.97
+      KODE = 1  NTRIAL =   9  T =  91.5216  P =  303040.      V = 9.910573E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      2.97
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      2.97
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      2.97
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    4     0.56361    
+      KODE = 1  NTRIAL =   6  T =  88.0511  P =  300080.      V = 0.965139      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      2.98
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR =  0.30492E-01 OLD X =  0.96596     NEW X =   1.0739    
+
+  LOOP $OLVER04 ITER    1:   1 VARS NOT CONVERGED, MAX ERR/TOL      1.0164        TIME =      2.98
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      2.98
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    7      7.6663    
+          2    1    3     0.92621    
+      KODE = 1  NTRIAL =   6  T =  88.0527  P =  300080.      V = 0.966776      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      2.98
+      ITER   2 For Specs:        XN2REST
+      SPEC   1 ERROR = -0.30778E-01 OLD X =   1.0739     NEW X =   1.0197    
+
+  LOOP $OLVER04 ITER    2:   1 VARS NOT CONVERGED, MAX ERR/TOL     -1.0259        TIME =      2.98
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      2.98
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    6      4.1512    
+          2    1    3     0.37502    
+      KODE = 1  NTRIAL =   6  T =  88.0515  P =  300080.      V = 0.966013      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      2.99
+      ITER   3 For Specs:        XN2REST
+      SPEC   1 ERROR =  0.28906E-03                          X =   1.0197    
+
+  LOOP $OLVER04 ITER    3:     *** CONVERGED *** , MAX ERR/TOL     0.96352E-02    TIME =      2.99
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      2.99
+      ITER   1 For Specs:        XN2
+      SPEC   1 ERROR = -0.17556E-04 OLD X =  0.94100     NEW X =  0.89200    
+
+  LOOP $OLVER03 ITER    1:   1 VARS NOT CONVERGED, MAX ERR/TOL     -1.7556        TIME =      2.99
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      2.99
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    3     0.32627E-01
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      3.04
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      3.04
+      KODE = 1  NTRIAL =   7  T =  88.0482  P =  300000.      V = 0.103530      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      3.04
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      3.04
+      KODE = 1  NTRIAL =   9  T =  91.5215  P =  303040.      V = 9.910674E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      3.04
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      3.04
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      3.04
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    6      3.1976    
+          2    1    3     0.22554    
+      KODE = 1  NTRIAL =   6  T =  88.0511  P =  300080.      V = 0.939745      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      3.04
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR =  0.17505E-01                          X =   1.0197    
+
+  LOOP $OLVER04 ITER    1:     *** CONVERGED *** , MAX ERR/TOL     0.58351        TIME =      3.04
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      3.05
+      ITER   2 For Specs:        XN2
+      SPEC   1 ERROR = -0.29311E-05                          X =  0.89200    
+
+  LOOP $OLVER03 ITER    2:     *** CONVERGED *** , MAX ERR/TOL    -0.29311        TIME =      3.05
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      3.05
+      ITER   1 For Specs:        DURCH
+      SPEC   1 ERROR =  0.13798                              X =   1.0315    
+
+  LOOP $OLVER01 ITER    1:     *** CONVERGED *** , MAX ERR/TOL     0.27596        TIME =      3.05
+
+      UOS BLOCK D3       MODEL: VALVE                                             TIME =      3.05
+      KODE = 1  NTRIAL =   8  T =  92.9998  P =  303917.      V = 1.133248E-06  Q =  0.00000    
+      OUTLET PRES =   0.3039E+06 PRES DROP =    3.000    
+
+      UOS BLOCK SPLIT2   MODEL: FSPLIT                                            TIME =      3.05
+      SPLIT FRACTIONS:  0.10000D+01    0.00000D+00
+
+      UOS BLOCK REB      MODEL: HEATER                                            TIME =      3.05
+      KODE = 1  NTRIAL =   4  T =  95.6637  P =  293917.      V = 0.850276      Q =  0.00000    
+
+      UOS BLOCK $MWHTR   MODEL: MHEATER                                           TIME =      3.05
+      T =   305.20     Q =  0.68505E+07
+
+      CONVERGENCE BLOCK $OLVER02  METHOD: SECANT                                  TIME =      3.05
+      ITER  14 For Specs:        XN1
+      SPEC   1 ERROR = -0.10439E-04 OLD X =   1.5286     NEW X =   1.5487    
+
+  LOOP $OLVER02 ITER   14:   1 VARS NOT CONVERGED, MAX ERR/TOL     -1.0439        TIME =      3.05
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      3.05
+      ITER   0 For Specs:        DURCH
+
+      CALCULATOR BLOCK PFEEDT1                                                    TIME =      3.05
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      3.05
+      ITER   0 For Specs:        XN2
+
+      UOS BLOCK KOLHP    MODEL: RADFRAC                                           TIME =      3.05
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    4     0.56568    
+
+      CALCULATOR BLOCK PFEEDD2                                                    TIME =      3.05
+
+      UOS BLOCK D2       MODEL: VALVE                                             TIME =      3.11
+      KODE = 1  NTRIAL =   7  T =  88.0481  P =  300000.      V = 0.103530      Q =  0.00000    
+      OUTLET PRES =   0.3000E+06 PRES DROP =   0.3100E+06
+
+      CALCULATOR BLOCK PFEEDD1                                                    TIME =      3.11
+
+      UOS BLOCK D1       MODEL: VALVE                                             TIME =      3.11
+      KODE = 1  NTRIAL =   9  T =  91.5033  P =  303040.      V = 9.912877E-02  Q =  0.00000    
+      OUTLET PRES =   0.3030E+06 PRES DROP =   0.3109E+06
+
+      CALCULATOR BLOCK Q1                                                         TIME =      3.11
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      3.11
+      ITER   0 For Specs:        XN2REST
+
+      UOS BLOCK KOLLP    MODEL: RADFRAC                                           TIME =      3.11
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    4     0.37354    
+      KODE = 1  NTRIAL =   6  T =  88.0511  P =  300080.      V = 0.940352      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER04  METHOD: SECANT                                  TIME =      3.12
+      ITER   1 For Specs:        XN2REST
+      SPEC   1 ERROR =  0.19892E-01                          X =   1.0197    
+
+  LOOP $OLVER04 ITER    1:     *** CONVERGED *** , MAX ERR/TOL     0.66306        TIME =      3.12
+
+      CONVERGENCE BLOCK $OLVER03  METHOD: SECANT                                  TIME =      3.12
+      ITER   1 For Specs:        XN2
+      SPEC   1 ERROR = -0.20422E-05                          X =  0.89200    
+
+  LOOP $OLVER03 ITER    1:     *** CONVERGED *** , MAX ERR/TOL    -0.20422        TIME =      3.12
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      3.12
+      ITER   1 For Specs:        DURCH
+      SPEC   1 ERROR =  0.78432E-01                          X =   1.0315    
+
+  LOOP $OLVER01 ITER    1:     *** CONVERGED *** , MAX ERR/TOL     0.15686        TIME =      3.12
+
+      UOS BLOCK D3       MODEL: VALVE                                             TIME =      3.12
+      KODE = 1  NTRIAL =   8  T =  92.9714  P =  303917.      V =  0.00000      Q =  0.00000    
+      OUTLET PRES =   0.3039E+06 PRES DROP =    3.000    
+
+      UOS BLOCK SPLIT2   MODEL: FSPLIT                                            TIME =      3.12
+      SPLIT FRACTIONS:  0.10000D+01    0.00000D+00
+
+      UOS BLOCK REB      MODEL: HEATER                                            TIME =      3.12
+      KODE = 1  NTRIAL =   1  T =  95.6343  P =  293917.      V = 0.851028      Q =  0.00000    
+
+      UOS BLOCK $MWHTR   MODEL: MHEATER                                           TIME =      3.13
+      T =   305.20     Q =  0.68505E+07
+
+      CONVERGENCE BLOCK $OLVER02  METHOD: SECANT                                  TIME =      3.13
+      ITER  15 For Specs:        XN1
+      SPEC   1 ERROR = -0.56839E-05                          X =   1.5487    
+
+  LOOP $OLVER02 ITER   15:     *** CONVERGED *** , MAX ERR/TOL    -0.56839        TIME =      3.13
+
+      CALCULATOR BLOCK PPROD                                                      TIME =      3.13
+
+      UOS BLOCK PK1      MODEL: COMPR                                             TIME =      3.13
+      OUTLET TEMP =   391.1       OUTLET PRES =  0.6100E+06   INDICATED HP =  0.7157E+06   BRAKE HP =  0.7230E+06
+      ISENTR TEMP =   377.5      CALC ISENTR EFF =  0.8400      ISENTR HP =  0.6012E+06  HP =  0.2047E+06
+
+      UOS BLOCK MIX1     MODEL: MIXER                                             TIME =      3.13
+      NO. TEMP ITER =    5     TEMP =  347.981    
+      KODE = 1  NTRIAL =   0  T = 347.9811  P =  600000.      V =  1.00000      Q =  0.00000    
+
+      TRANSFER LP-B                                                               TIME =      3.13
+      STREAM Z3 <---  STREAM S22  
+      ---FLASH STREAM Z3      :
+      KODE = 2  NTRIAL =   5  T =  92.9713  P =  303920.      V =  0.00000      Q =  0.00000    
+
+      CALCULATOR BLOCK MOLZ3                                                      TIME =      3.13
+
+      TRANSFER HP-D                                                               TIME =      3.13
+      STREAM Z1 <---  STREAM S15  
+      ---FLASH STREAM Z1      :
+      KODE = 3  NTRIAL =   8  T =  96.7124  P =  610000.      V =  1.00000      Q =-3.689623E-05
+
+      CALCULATOR BLOCK MOLZ1                                                      TIME =      3.13
+
+      UOS BLOCK $RCH01   MODEL: HEATER                                            TIME =      3.13
+      KODE = 1  NTRIAL =   8  T =  96.7123  P =  610000.      V = 6.153202E-02  Q =  0.00000    
+
+      UOS BLOCK $RCHTR   MODEL: MHEATER                                           TIME =      3.13
+      T =   96.166     Q =  0.23840E+07
+
+      CALCULATOR BLOCK SPEZE                                                      TIME =      3.13
+
+      INFORMATION WHILE EXECUTING CALCULATOR BLOCK: "SPEZE"    (APLX2S.3)       
+      INITIAL VALUE OF LOCAL PARAMETER "ESPECN" IS MISSING.                     
+
+      INFORMATION WHILE EXECUTING CALCULATOR BLOCK: "SPEZE"    (APLX2S.3)       
+      INITIAL VALUE OF LOCAL PARAMETER "ESPECST" IS MISSING.                    
+
+      GENERATING RESULTS FOR UOS BLOCK ZK1      MODEL: HEATER                     TIME =      3.20
+
+      GENERATING RESULTS FOR UOS BLOCK ZK2      MODEL: HEATER                     TIME =      3.20
+
+      GENERATING RESULTS FOR UOS BLOCK REB      MODEL: HEATER                     TIME =      3.20
+
+      GENERATING RESULTS FOR UOS BLOCK $MWHTR   MODEL: MHEATER                    TIME =      3.20
+      T =   305.20     Q =  0.68505E+07
+
+      GENERATING RESULTS FOR UOS BLOCK $RCHTR   MODEL: MHEATER                    TIME =      3.20
+      T =   96.166     Q =  0.23840E+07
+      UA =   0.14376E+07 MITA =   0.54688     IPOS =   20
+      HSNTU =   0.16778E-04 CSNTU =    1.9262    
+      UA =   0.14376E+07 MITA =   0.54688     IPOS =   20
+      HSNTU =   0.59949E-04 CSNTU =    1.9262    
+
+      CHECKING PHASE EQUILIBRIUM RESULTS                                          TIME =      3.21
+
+      CHECKING PHASE EQUILIBRIUM RESULTS                                          TIME =      3.21
+                                                                         
+   ###############################################                       
+   # Exergy calculations have been performed     #                       
+   # using subroutines that belong to:           #                       
+   # Technische Universitaet Berlin              #                       
+   # Department for Energy Engineering           #                       
+   # Prof. Dr.-Ing. George Tsatsaronis           #                       
+   #                                             #                       
+   # In case of problems and/or questions:       #                       
+   # Contact Mr. Mathias Penkuhn                 #                       
+   # mathias.penkuhn(at)tu-berlin.de             #                       
+   #                                             #                       
+   # No further distribution allowed!            #                       
+   ###############################################                       
+
+ Report Writer entered                                                            Time =     11.13
+
+ Results generated                                                                Time =     11.23
+
+ Report Writer entered                                                            Time =     39.41
+
+ Results generated                                                                Time =     39.49
+
+ Report Writer entered                                                            Time =     40.44
+
+ Results generated                                                                Time =     40.52
+
+RUN SAVED
+
+
+
+ *** SUMMARY OF ERRORS ***
+
+                  PHYSICAL
+                  PROPERTY  SYSTEM  SIMULATION
+ TERMINAL ERRORS      0        0         0
+   SEVERE ERRORS      0        0         1
+          ERRORS      0        0         6
+        WARNINGS      0        0        14
