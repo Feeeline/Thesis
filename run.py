@@ -11,6 +11,8 @@ from aspen_rep_parser import parse_rep
 # -----------------------------
 # HIER DEIN PFAD (Windows-Beispiel)
 # -----------------------------
+# Hinweis: Der Parser akzeptiert .bkp-Dateien und liest dort Stream-/Block-Namen aus.
+# Wenn eine .rep-Datei existiert, nutzt der Parser diese als Fallback für vollständige Daten.
 REP_PATH = r"C:\Users\Felin\Documents\Masterthesis\Code\Thesis\Thesis\Aspenfile\Doppelkolonne.bkp"
 
 # Optional: Ausgabeordner + Dateiname
