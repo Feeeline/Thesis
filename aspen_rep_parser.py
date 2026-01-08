@@ -13,6 +13,7 @@ import re
 import sys
 import warnings
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import Iterable, Optional
 
 
@@ -330,10 +331,20 @@ def _parse_blocks(lines: list[str]) -> list[Block]:
     return blocks
 
 
-def parse_rep(path: str) -> ParsedCase:
-    with open(path, "r", encoding="utf-8", errors="ignore") as handle:
-        lines = [line.rstrip("\n") for line in handle]
+def _parse_bkp_entities(lines: list[str]) -> tuple[list[str], list[str]]:
+    stream_names = set()
+    block_names = set()
+    stream_pattern = re.compile(r"Top\.appModelV8\.Streams\.([A-Za-z0-9_]+)")
+    block_pattern = re.compile(r"Top\.appModelV8\.Blocks\.([A-Za-z0-9_]+)")
+    for line in lines:
+        for match in stream_pattern.finditer(line):
+            stream_names.add(match.group(1))
+        for match in block_pattern.finditer(line):
+            block_names.add(match.group(1))
+    return sorted(stream_names), sorted(block_names)
 
+
+def _parse_lines(lines: list[str]) -> ParsedCase:
     environment = Environment()
     try:
         environment = _parse_environment(lines)
@@ -358,6 +369,31 @@ def parse_rep(path: str) -> ParsedCase:
         warnings.warn(str(exc), RuntimeWarning)
 
     return ParsedCase(environment=environment, streams=streams_list, blocks=blocks_list)
+
+
+def parse_rep(path: str) -> ParsedCase:
+    input_path = Path(path)
+    with input_path.open("r", encoding="utf-8", errors="ignore") as handle:
+        lines = [line.rstrip("\n") for line in handle]
+
+    parsed = _parse_lines(lines)
+    if input_path.suffix.lower() == ".bkp":
+        if not parsed.streams and not parsed.blocks:
+            streams, blocks = _parse_bkp_entities(lines)
+            if streams or blocks:
+                parsed = ParsedCase(
+                    environment=parsed.environment,
+                    streams=[Stream(name=name) for name in streams],
+                    blocks=[Block(name=name, block_type="Unknown") for name in blocks],
+                )
+        if not parsed.streams and not parsed.blocks:
+            rep_candidate = input_path.with_suffix(".rep")
+            if rep_candidate.exists():
+                with rep_candidate.open("r", encoding="utf-8", errors="ignore") as handle:
+                    rep_lines = [line.rstrip("\n") for line in handle]
+                parsed = _parse_lines(rep_lines)
+
+    return parsed
 
 
 def _write_json(parsed: ParsedCase, path: str) -> None:
